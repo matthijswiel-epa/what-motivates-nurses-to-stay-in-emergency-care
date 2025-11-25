@@ -1,0 +1,2776 @@
+{UTF-8}
+Number of patients admitted per week=
+	770+Number of patients admitted per week pulse
+	~	patients/Week
+	~	High: 1530, Medium: 770, Low: 358
+	|
+
+Number of patients admitted per week pulse=
+	0
+	~	patients
+	~		|
+
+Quality of private life=
+	0.8-Private life pulse
+	~	vas
+	~		|
+
+Private life pulse=
+	(PULSE(4,4)/10)*3
+	~	vas
+	~		|
+
+Short term absenteeism=
+	2
+	~	nurses
+	~		|
+
+Average patient dependency=
+	10+Average patient dependency pulse
+	~	JDT
+	~	Each domain is scored on a three-point scale (from 1 to 3). This yields a total \
+		dependency score
+		ranging from 6 to 18, with a higher score indicating a higher patient \
+		dependency on nursing care. The score is used to assign the patient into \
+		one of the four JDT dependency categories (low, score 6–8; medium, score \
+		9–12; high, score 13–15; total, score 16–18)
+	|
+
+Average patient dependency pulse=
+	0
+	~	JDT
+	~		|
+
+Decrease in team cohesion=
+	Team cohesion*Loss of team cohesion from nurses leaving*(Long term absenteeism flow+\
+		Nurses leaving the profession
+	)
+	~	vas/Week
+	~		|
+
+Decrease of competency=
+	Skill mix and competency of nursing team*Competency lost by nurses leaving
+	*(Long term absenteeism flow+Nurses leaving the profession)
+	~	vas/Week
+	~		|
+
+Coping with emotional distress through depersonalization=
+	0.1
+	~	dmnl/Week
+	~		|
+
+Success of interventions=
+	Skill mix and competency of nursing team*Success of intervention determined by competency\
+		+(Maximum vas score*Success of intervention determined by competency)
+	~	vas
+	~		|
+
+Coping through depersonalization=
+	MIN((Emotional distress*Coping with emotional distress through depersonalization),((\
+		1-Depersonalization)*Coping with emotional distress through depersonalization))
+	~	vas/Week
+	~		|
+
+Job satisfaction=
+	(
+	    (Weight of psychosomatic complaints in job satisfaction * (1 - Psychosomatic complaints\
+		))
+	  + (Weight of workplace positivity in job satisfaction * Workplace positivity)
+	  + (Weight of job control in job satisfaction * Job control)
+	  + (Satisfaction with ratio of direct and indirect care time * Weight of satisfaction with ratio in job satisfaction\
+		)
+	)
+	/ 
+	(
+	    Weight of psychosomatic complaints in job satisfaction
+	  + Weight of job control in job satisfaction
+	  + Weight of workplace positivity in job satisfaction
+	  + Weight of satisfaction with ratio in job satisfaction
+	)
+	~	vas
+	~		|
+
+Weight of satisfaction with ratio in job satisfaction=
+	0.8
+	~	dmnl
+	~		|
+
+Nurses leaving pulse=
+	IF THEN ELSE(Intention to stay in the profession<Intention to actually leaving threshold\
+		,(PULSE TRAIN(INITIAL TIME,TIME STEP,Interval of nurses leaving the profession,FINAL TIME\
+		)*(Nurses per interval/TIME STEP)),0)
+	~	nurses/Week
+	~		|
+
+Nurses per interval=
+	1
+	~	nurse
+	~		|
+
+Long term absenteeism pulse=
+	IF THEN ELSE(Psychosomatic complaints>Psychosomatic complaints to long term absenteeism threshold\
+		,(PULSE TRAIN(INITIAL TIME
+	,TIME STEP,Interval of nurses absent long term,FINAL TIME
+	)*(Nurses per interval/TIME STEP)),0)
+	~	nurses/Week
+	~		|
+
+Time of positive shifts memory to fade=
+	6
+	~	weeks
+	~		|
+
+Fading negative shift memory=
+	SMOOTHI(Perceived negative shifts completed per week,Time of negative shift memory to fade\
+		,0)
+	~	shifts/Week
+	~		|
+
+Fading positive shift memory=
+	SMOOTHI(Perceived positive shifts completed per week,Time of positive shifts memory to fade\
+		,0)
+	~	shifts/Week
+	~		|
+
+Time of negative shift memory to fade=
+	6
+	~	weeks
+	~		|
+
+Perceived negative shifts completed per week=
+	(Scheduled shifts completed per week*(1-Percentage of scheduled shifts that are positive\
+		))+(Extra shifts completed per week*(1-Percentage of extra shifts that are positive\
+		))
+	~	shifts/Week
+	~		|
+
+Vacant shift dissipation= DELAY FIXED (
+	Vacant shifts per week,"1 week",0)
+	~	shifts/Week
+	~		|
+
+Effect of being understaffed during shifts=
+	Effect of being understaffed during shifts lookup(Vacant shifts/Shifts)
+	~	dmnl
+	~		|
+
+Effect of task efficiency on care time per patient=
+	Effect of task efficiency on care time per patient lookup(Task efficiency from team organisation\
+		/Maximum vas score)
+	~	dmnl
+	~		|
+
+Time for professional development=
+	Effect of professional development on time lookup(Training and development/Maximum vas score\
+		)
+	~	minutes/patient
+	~		|
+
+Perceived positive shifts completed per week=
+	(Scheduled shifts completed per week*Percentage of scheduled shifts that are positive\
+		)+(Extra shifts completed per week*Percentage of extra shifts that are positive)
+	~	shifts/Week
+	~		|
+
+Match between competency and patient dependency=
+	(Average patient dependency/Maximum patient dependency)-(Skill mix and competency of nursing team\
+		/Maximum vas score)
+	~	dmnl
+	~		|
+
+Effect of team cohesion on willingness to be flexible=
+	Effect of team cohesion on willingness to be flexible lookup(Team cohesion/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Care time per patient=
+	(Direct care time per patient+Indirect care time per patient)/Minutes in an hour
+	~	hours/patient
+	~		|
+
+Interval of nurses leaving the profession=
+	Effect of intention to stay on nurses leaving the profession lookup(Intention to stay in the profession\
+		/Maximum vas score
+	)
+	~	weeks
+	~		|
+
+Minutes in an hour==
+	60
+	~	minutes/hour
+	~		|
+
+Increase of psychosomatic complaints=
+	((DELAY1(Total amount of distress,Time that stress turns into physical complaints))/\
+		Time that stress turns into physical complaints)*(1-(Psychosomatic complaints/Maximum level of distress\
+		))
+	~	vas/Week
+	~		|
+
+Objective task demand per week=
+	Care time per patient*Number of patients admitted per week*Effect of task efficiency on care time per patient
+	*Task performance based on stress level
+	~	hours/Week
+	~		|
+
+Intention to actually leaving threshold=
+	0.5
+	~	vas
+	~		|
+
+Psychosomatic complaints to long term absenteeism threshold=
+	0.3
+	~	vas
+	~		|
+
+Increase in team cohesion=
+	Normal rate of team cohesion*Effect of depersonalization on increase of team cohesion\
+		*(1-(Team cohesion/Maximum vas score
+	))
+	~	vas/Week
+	~		|
+
+Nurses leaving the profession=
+	Nurses leaving pulse
+	~	nurses/Week
+	~		|
+
+Number of nurses available= INTEG (
+	-Long term absenteeism flow-Nurses leaving the profession,
+		Initial number of nurses available)
+	~	nurses
+	~		|
+
+Skill mix and competency of nursing team= INTEG (
+	Professional development-Decrease of competency,
+		Education level of nurses)
+	~	vas
+	~		|
+
+Long Term Absenteeism= INTEG (
+	Long term absenteeism flow,
+		0)
+	~	nurses
+	~		|
+
+Long term absenteeism flow=
+	Long term absenteeism pulse
+	~	nurses/Week
+	~		|
+
+Loss of team cohesion from nurses leaving=
+	0.05
+	~	dmnl/nurse
+	~		|
+
+Effect of depersonalization on increase of team cohesion=
+	Effect of depersonalization on increase of team cohesion lookup(Depersonalization/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Effect of depersonalization on increase of team cohesion lookup(
+	[(0,0)-(1,1)],(0,1),(0.3,1),(0.5,0.95),(0.6,0.8),(1,0))
+	~	dmnl
+	~		|
+
+Effect of intention to stay on nurses leaving the profession lookup(
+	[(0,0)-(1,52)],(0,4),(0.4,9),(0.5,12),(0.6,24),(0.7,36),(0.8,48),(0.9,50),(1,52))
+	~	weeks
+	~		|
+
+Effect of long term absenteeism on emotional distress=
+	Effect of long term absenteeism on emotional distress lookup(Long Term Absenteeism/Nurses initially scheduled\
+		)
+	~	dmnl
+	~		|
+
+Competency lost by nurses leaving=
+	0.05
+	~	dmnl/nurse
+	~		|
+
+Decrease of psychosomatic complaints=
+	Ability to physically rest in between shifts
+	~	vas/Week
+	~		|
+
+Interval of nurses absent long term=
+	Effect of psychosomatic complaints on interval of absenteeism(Psychosomatic complaints\
+		/Maximum vas score)
+	~	weeks
+	~		|
+
+Effect of psychosomatic complaints on interval of absenteeism(
+	[(0,0)-(1,15)],(0,15),(0.3,12),(0.4,11),(0.5,8),(1,2))
+	~	weeks
+	~		|
+
+Ability to physically rest in between shifts=
+	IF THEN ELSE(Psychosomatic complaints>0,MIN(Percentage that resting reduces psychosomatic complaints\
+		*Psychosomatic complaints,0.05),0)
+	~	vas/Week
+	~		|
+
+Extra shifts completed per week=
+	MIN(INTEGER((Number of nurses available*Nurses' willingness to be flexible)),Extra shifts open per week\
+		)
+	~	shifts/Week
+	~		|
+
+Extra shifts open per week=
+	Agreed upon shifts per nurse*(Nurses initially scheduled-INTEGER(Number of nurses available\
+		))
+	~	shifts/Week
+	~		|
+
+Training and development=
+	Effect of supportive leadership on training and development lookup(Supportive leadership\
+		/Maximum vas score)
+	~	vas
+	~		|
+
+Decrease of emotional distress=
+	(DELAY1((1-Psychosomatic complaints),Time for psychosomatic complaints to have effect on stress\
+		)/Time for psychosomatic complaints to have effect on stress)*Effect of job control on emotional distress\
+		*Effect of team cohesion on emotional distress*(1-Emotional distress/Maximum level of distress\
+		)
+	~	vas/Week
+	~		|
+
+Decrease of moral distress=
+	(Moral distress/Maximum level of distress)*Effect of affirmation on moral distress*DELAY1\
+		(1-Psychosomatic complaints,Time for psychosomatic complaints to have effect on stress\
+		)/Time for psychosomatic complaints to have effect on stress
+	~	vas/Week
+	~		|
+
+Percentage that resting reduces psychosomatic complaints=
+	0.1
+	~	dmnl/Week
+	~		|
+
+Increase of moral distress=
+	Normal increase of moral distress*(1-Moral distress/Maximum level of distress)*((Effect of ability to deliver safe care on moral distress\
+		))
+	~	vas/Week
+	~		|
+
+Time for psychosomatic complaints to have effect on stress=
+	2
+	~	weeks
+	~		|
+
+Professional development=
+	(DELAY1(Training and development,Time before training is completed)/Time before training is completed\
+		)*(1-(Skill mix and competency of nursing team
+	/Maximum vas score))
+	~	vas/Week
+	~		|
+
+Initial number of nurses available=
+	Nurses initially scheduled-Short term absenteeism
+	~	nurses
+	~		|
+
+Scheduled shifts completed per week=
+	Agreed upon shifts per nurse*Number of nurses available
+	~	shifts/Week
+	~		|
+
+Emotional demand during shifts=
+	Effect of total amount distress on positivity of shifts lookup(Total amount of distress\
+		/Maximum level of distress
+	)*Effect of match on positivity of shifts lookup(Match between competency and patient dependency\
+		)
+	~	dmnl
+	~		|
+
+Percentage of extra shifts that are positive=
+	Perception of extra shifts*(1-Emotional demand during shifts)
+	~	dmnl
+	~		|
+
+Effect of short term absenteeism on ability to destress=
+	Effect of short term absenteeism on ability to destress lookup(Short term absenteeism\
+		/Nurses initially scheduled)
+	~	dmnl
+	~		|
+
+Total amount of distress=
+	MAX(0,(((Moral distress+Emotional distress)/2)-(Weight of eustress in total amount of distress\
+		*Eustress)))
+	~	vas
+	~		|
+
+Effect of psychosomatic complaints on ability to destress=
+	Effect of psychosomatic complaints on ability to destress lookup(Psychosomatic complaints\
+		/Maximum level of distress)
+	~	dmnl
+	~		|
+
+Task performance based on stress level=
+	Effect of total amount of distress on task performance lookup(Total amount of distress\
+		/Maximum level of distress)
+	~	dmnl
+	~		|
+
+Objective task demand per shift=
+	Average objective task demand per week/Shifts
+	~	hours/shift/Week
+	~		|
+
+Job control=
+	(
+	    (Weight of consultation opportunities in job control * Consultation opportunities with the team\
+		)
+	  + (Weight of decision making autonomy in job control * Decision making autonomy)
+	  + (Weight of skill mix and competency in job control * Skill mix and competency of nursing team\
+		)
+	)
+	/ 
+	(
+	    Weight of consultation opportunities in job control
+	  + Weight of decision making autonomy in job control
+	  + Weight of skill mix and competency in job control
+	)
+	~	vas
+	~		|
+
+Ability to deliver safe care=
+	Job control*(Effect of match on ability to deliver safe care(Match between competency and patient dependency\
+		))*Effect of task demand per shift on ability to deliver safe care
+	~	vas
+	~		|
+
+Task efficiency from team organisation=
+	Weight of skill mix and competency in task efficiency*Skill mix and competency of nursing team\
+		+(1-Weight of skill mix and competency in task efficiency
+	)*Consultation opportunities with the team
+	~	vas
+	~		|
+
+Decrease of depersonalization=
+	(Depersonalization/Maximum level of distress)*Normal decrease of depersonalization
+	~	vas/Week
+	~		|
+
+Time before training is completed=
+	16
+	~	weeks
+	~		|
+
+Normal decrease of depersonalization=
+	0.1
+	~	vas/Week
+	~		|
+
+Satisfaction with ratio of direct and indirect care time=
+	Effect of ratio of direct and indirect care time on job satisfaction lookup(Ratio of direct and indirect care time\
+		/Preferred ratio of direct and indirect care time)
+	~	vas
+	~		|
+
+Decision making autonomy=
+	(Weight of skill mix and competency in decision making autonomy 
+	            * Skill mix and competency of nursing team 
+	            * Effect of experience on decision making autonomy)
+	         + ((1 - Weight of skill mix and competency in decision making autonomy) 
+	            * Team psychological safety)
+	~	vas
+	~		|
+
+Direct care time per patient=
+	Initial direct care time per patient*Patient dependency to direct care time lookup(Average patient dependency\
+		/Maximum patient dependency)
+	~	minutes/patient
+	~		|
+
+Nurse resilience=
+	Skill mix and competency of nursing team*Effect of experience on resilience*Ability to destress
+	~	vas
+	~		|
+
+Preferred ratio of direct and indirect care time=
+	0.36
+	~	dmnl
+	~		|
+
+Effect of patient dependency on indirect care tasks=
+	Patient dependency to indirect care time lookup(Average patient dependency/Maximum patient dependency\
+		)
+	~	dmnl
+	~		|
+
+Effect of task demand per shift on ability to deliver safe care=
+	Effect of task demand per shift on ability to deliver safe care lookup(Objective task demand per shift\
+		/Threshold for busy shift)
+	~	dmnl
+	~		|
+
+Education level of nurses=
+	0.7
+	~	vas
+	~		|
+
+Effect of ratio of direct and indirect care time on job satisfaction lookup(
+	[(0,0)-(2,2)],(0,0.5),(0.8,0.6),(0.9,0.9),(1,1),(6,1))
+	~	vas
+	~		|
+
+Intention to stay in the profession=
+	(
+	    (Weight of work life balance in intention to stay * Work life balance)
+	  + (Weight of career in intention to stay * Career expectation fulfillment)
+	  + (Weight of job satisfaction in intention to stay * Job satisfaction)
+	)
+	/ 
+	(
+	    Weight of career in intention to stay
+	  + Weight of job satisfaction in intention to stay
+	  + Weight of work life balance in intention to stay
+	)
+	~	vas
+	~		|
+
+Career expectation fulfillment=
+	0.8
+	~	vas
+	~		|
+
+Workplace positivity=
+	(
+	    (1 - Weight of ability to deliver safe care in workplace adversity) * Positive interpersonal interactions
+	) 
+	+ 
+	(
+	    Weight of ability to deliver safe care in workplace adversity * Ability to deliver safe care
+	)
+	~	vas
+	~		|
+
+Weight of career in intention to stay=
+	0.1
+	~	dmnl
+	~		|
+
+Weight of consultation opportunities in job control=
+	0.1
+	~	dmnl
+	~		|
+
+Affirmation for decisions from team=
+	(
+	    (1 - Weight of supportive leadership in affirmation for decisions) * Consultation opportunities with the team
+	)
+	+ 
+	(
+	    Weight of supportive leadership in affirmation for decisions * Supportive leadership
+	)
+	~	vas
+	~		|
+
+Team psychological safety=
+	(Weight of team cohesion in team psychological safety*(MAX(Team cohesion,0)))+((1-Weight of team cohesion in team psychological safety\
+		)*Supportive leadership)
+	~	vas
+	~		|
+
+Team resilience=
+	(Weight of team cohesion in team resilience*(MAX(Team cohesion,0)))+((1-Weight of team cohesion in team resilience\
+		)*Supportive leadership)
+	~	vas
+	~		|
+
+Positive interpersonal interactions=
+	((Weight of team cohesion in positive interactions*Team cohesion)+(Weight of interactions outside team in positive interactions\
+		*Interactions with colleagues outside of nursing team)
+	+(Weight of ability to deliver safe care positive interactions*Ability to deliver safe care\
+		))/(Weight of ability to deliver safe care positive interactions+Weight of interactions outside team in positive interactions\
+		+Weight of team cohesion in positive interactions)
+	~	vas
+	~		|
+
+Effect of supportive leadership on training and development lookup(
+	[(0,0)-(1,1)],(0,0.2),(0.3,0.25),(0.7,0.45),(1,0.5))
+	~	vas
+	~		|
+
+Weight of skill mix and competency in decision making autonomy=
+	0.7
+	~	dmnl
+	~		|
+
+Weight of skill mix and competency in job control=
+	0.6
+	~	dmnl
+	~		|
+
+Weight of skill mix and competency in task efficiency=
+	0.6
+	~	dmnl
+	~		|
+
+Weight of success of interventions in eustress=
+	0.1
+	~	dmnl
+	~		|
+
+Weight of team cohesion in team psychological safety=
+	0.7
+	~	dmnl
+	~		|
+
+Weight of team cohesion in team resilience=
+	0.8
+	~	dmnl
+	~		|
+
+Weight of ability to deliver safe care in workplace adversity=
+	0.4
+	~	dmnl
+	~		|
+
+Weight of ability to deliver safe care positive interactions=
+	0.1
+	~	dmnl
+	~		|
+
+Weight of work life balance in intention to stay=
+	0.5
+	~	dmnl
+	~		|
+
+Weight of decision making autonomy in job control=
+	0.3
+	~	dmnl
+	~		|
+
+Weight of psychosomatic complaints in job satisfaction=
+	0.4
+	~	dmnl
+	~		|
+
+Eustress=
+	(
+	    (1 - Weight of success of interventions in eustress) * ((Nurse resilience + Team resilience\
+		) / 2)
+	) 
+	+ 
+	(
+	    Weight of success of interventions in eustress * Success of interventions
+	)
+	~	vas
+	~		|
+
+Weight of workplace positivity in job satisfaction=
+	0.2
+	~	dmnl
+	~		|
+
+Weight of interactions outside team in positive interactions=
+	0.2
+	~	dmnl
+	~		|
+
+Weight of job control in job satisfaction=
+	0.2
+	~	dmnl
+	~		|
+
+Weight of supportive leadership in affirmation for decisions=
+	0.3
+	~	dmnl
+	~		|
+
+Weight of job satisfaction in intention to stay=
+	0.4
+	~	dmnl
+	~		|
+
+Weight of team cohesion in positive interactions=
+	0.7
+	~	dmnl
+	~		|
+
+Percentage of scheduled shifts that are positive=
+	Satisfaction with scheduling*(1-Emotional demand during shifts)*Effect of being understaffed during shifts\
+		*Effect of task demand on positivity of shift
+	~	dmnl
+	~		|
+
+Nurses' willingness to be flexible=
+	Initial willingness to be flexible*Effect of team cohesion on willingness to be flexible\
+		*Effect of work life balance on willingsness to be flexible
+	~	shifts/Week/nurse
+	~	shifts/Week/nurse
+	|
+
+Effect of team cohesion on willingness to be flexible lookup(
+	[(0,0)-(1,1)],(0,0.2),(0.2,0.6),(0.4,0.8),(0.6,0.95),(0.7,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of work life balance on willingsness to be flexible=
+	Effect of work life balance on willingness to be flexible lookup(Work life balance/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Vacant shifts per week=
+	Extra shifts open per week-Extra shifts completed per week
+	~	shifts/Week
+	~		|
+
+Initial willingness to be flexible=
+	1
+	~	shifts/nurse/Week
+	~		|
+
+Effect of work life balance on willingness to be flexible lookup(
+	[(0,0)-(1,1)],(0,0),(0.2,0),(0.3,0.2),(0.4,0.4),(0.6,0.8),(0.7,1),(1,1))
+	~	dmnl
+	~		|
+
+Perceived positive shifts= INTEG (
+	Perceived positive shifts completed per week-Fading positive shift memory,
+		0)
+	~	shifts
+	~		|
+
+Shifts= INTEG (
+	Added shifts per week-Perceived negative shifts completed per week-Perceived positive shifts completed per week\
+		-Vacant shifts per week,
+		Initial value of shifts)
+	~	shifts
+	~		|
+
+Shift balance=
+	ZIDZ(Perceived positive shifts,Perceived negative shifts)
+	~	dmnl
+	~		|
+
+Vacant shifts= INTEG (
+	Vacant shifts per week-Vacant shift dissipation,
+		0)
+	~	shifts
+	~		|
+
+Perceived negative shifts= INTEG (
+	Perceived negative shifts completed per week-Fading negative shift memory,
+		0)
+	~	shifts
+	~		|
+
+Administrative tasks=
+	Patient transport+Communication and training tasks
+	~	minutes/patient
+	~		|
+
+Indirect care tasks=
+	Administrative tasks+Communication and training tasks+Patient transport+Preparing equipment and managing medication
+	~	minutes/patient
+	~	46/60 is baseline
+	|
+
+Indirect care time per patient=
+	Indirect care tasks*Effect of patient dependency on indirect care tasks
+	~	minutes/patient
+	~		|
+
+Preparing equipment and managing medication=
+	5
+	~	minutes/patient
+	~		|
+
+Patient transport=
+	5
+	~	minutes/patient
+	~		|
+
+Perception of extra shifts=
+	0.4
+	~	dmnl
+	~		|
+
+Success of intervention determined by competency=
+	0.3
+	~	dmnl
+	~		|
+
+Effect of psychosomatic complaints on ability to destress lookup(
+	[(-1,-1)-(1,1)],(-1,0),(0.3,0),(0.5,0.2),(0.6,0.5),(0.7,0.8),(0.8,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of task demand on positivity of shift=
+	Effect of task demand on positivity of shift lookup(Objective task demand per shift/\
+		Threshold for busy shift)
+	~	dmnl
+	~		|
+
+Decrease in ability to destress=
+	Normal ability to destress*Effect of short term absenteeism on ability to destress*Ability to destress\
+		*Effect of psychosomatic complaints on ability to destress
+	~	dmnl/Week
+	~		|
+
+Effect of task demand on positivity of shift lookup(
+	[(0,0)-(30,1)],(0,1),(0.5,1),(1,1),(1.5,0.8),(2,0.1),(30,0))
+	~	dmnl
+	~		|
+
+Increase in ability to destress=
+	Normal ability to destress*Effect of work life balance on ability to destress*(1-Ability to destress\
+		)
+	~	dmnl/Week
+	~		|
+
+Normal ability to destress=
+	0.1
+	~	dmnl/Week
+	~		|
+
+Threshold for busy shift=
+	8
+	~	hours/shift/Week
+	~		|
+
+Ability to destress= INTEG (
+	Increase in ability to destress-Decrease in ability to destress,
+		Initial ability to destress)
+	~	dmnl
+	~		|
+
+"1 week"=
+	1
+	~	Week
+	~		|
+
+Initial ability to destress=
+	0.8
+	~	dmnl
+	~		|
+
+Initial value of shifts=
+	Agreed upon shifts per nurse*Nurses initially scheduled*"1 week"
+	~	shifts
+	~		|
+
+Weight of eustress in total amount of distress=
+	0.2
+	~	dmnl
+	~		|
+
+Effect of moral distress on depersonalization lookup(
+	[(0,0)-(10,1)],(0,0),(0.5,0.5),(1,1),(10,1))
+	~	dmnl
+	~		|
+
+Added shifts per week=
+	Nurses initially scheduled*Agreed upon shifts per nurse
+	~	shifts/Week
+	~		|
+
+Depersonalization= INTEG (
+	Coping through depersonalization+Increase of depersonalization-Decrease of depersonalization\
+		,
+		0)
+	~	vas
+	~		|
+
+Nurses initially scheduled=
+	60
+	~	nurses
+	~		|
+
+Effect of moral distress on depersonalization=
+	Effect of moral distress on depersonalization lookup(DELAY1(Moral distress,Time that moral distress leads to depersonalization\
+		)/Maximum level of distress)
+	~	dmnl
+	~		|
+
+Increase of depersonalization=
+	Effect of workplace positivity on depersonalization*Effect of moral distress on depersonalization\
+		*Normal increase of depersonalization rate*(1-(Depersonalization/Maximum level of distress\
+		))
+	~	vas/Week
+	~		|
+
+Effect of team cohesion on capacity to destress emotionally lookup(
+	[(0,0)-(-1,1)],(-1,0),(0,0),(0.1,0.05),(0.2,0.15),(0.6,0.9),(0.7,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of job control on emotional distress=
+	Effect of job control on emotional distress lookup(Job control/Maximum vas score)
+	~	dmnl
+	~		|
+
+Effect of long term absenteeism on emotional distress lookup(
+	[(0,0)-(1,1)],(0,0.8),(0.01666,0.9),(0.03333,0.95),(0.0666,0.97),(0.1333,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of emotional distress on private life=
+	Effect of emotional distress on private life lookup(Emotional distress/Maximum level of distress\
+		)
+	~	dmnl
+	~		|
+
+Work life balance=
+	Quality of private life*Effect of emotional distress on private life
+	~	vas
+	~		|
+
+Increase of emotional distress=
+	Total effect on emotional distress*(1-(Emotional distress/Maximum level of distress)\
+		)*Normal increase of emotional distress
+	~	vas/Week
+	~		|
+
+Effect of short term absenteeism on ability to destress lookup(
+	[(0,0)-(1,1)],(0,0),(0.01666,0.2),(0.03333,0.6),(0.06666,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of work life balance on ability to destress=
+	Effect of work life balance on ability to destress lookup(Work life balance/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Effect of team cohesion on emotional distress=
+	Effect of team cohesion on capacity to destress emotionally lookup(Team cohesion/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Effect of emotional distress on private life lookup(
+	[(0,0)-(1,1)],(0,1),(0.3,1),(0.5,0.95),(0.6,0.9),(0.7,0.8),(0.8,0.7),(1,0.2))
+	~	dmnl
+	~		|
+
+Effect of job control on emotional distress lookup(
+	[(0,0)-(1,1)],(0,1),(0.2,0.95),(0.4,0.8),(0.6,0.4),(0.7,0.4),(1,0.4))
+	~	dmnl
+	~		|
+
+Effect of work life balance on ability to destress lookup(
+	[(0,0)-(1,1)],(0,0),(0.3,0.15),(0.4,0.2),(0.6,0.5),(0.7,1),(1,1))
+	~	dmnl
+	~		|
+
+Total effect on emotional distress=
+	(Effect of long term absenteeism on emotional distress+(Effect of shift balance on emotional distress\
+		(Shift balance)))/2
+	~	dmnl
+	~		|
+
+Interactions with colleagues outside of nursing team=
+	0.7
+	~	vas
+	~		|
+
+Emotional distress= INTEG (
+	Increase of emotional distress-Coping through depersonalization-Decrease of emotional distress\
+		,
+		Initial emotional distress level)
+	~	vas
+	~		|
+
+Effect of workplace positivity on depersonalization lookup(
+	[(0,0)-(1,1)],(0,1),(0.3,1),(0.6,0.7),(0.7,0.6),(0.9,0.2),(1,0))
+	~	dmnl
+	~		|
+
+Effect of workplace positivity on depersonalization=
+	Effect of workplace positivity on depersonalization lookup(Workplace positivity/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Normal increase of emotional distress=
+	0.5
+	~	vas/Week
+	~		|
+
+Initial emotional distress level=
+	0.5
+	~	vas
+	~		|
+
+Effect of affirmation on moral distress lookup(
+	[(0,0)-(1,1)],(0,0),(0.4,0.8),(0.5,0.95),(0.6,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of task demand per shift on ability to deliver safe care lookup(
+	[(0,0)-(3,1)],(0,1),(1,1),(1.1,0.99),(1.5,0.9),(2.5,0.5),(3,0),(40,0))
+	~	dmnl
+	~		|
+
+Ratio of direct and indirect care time=
+	Direct care time per patient/Indirect care time per patient
+	~	dmnl
+	~		|
+
+Effect of ability to deliver safe care on moral distress=
+	Effect of ability to deliver safe care on moral distress lookup(Ability to deliver safe care\
+		/Maximum vas score)
+	~	dmnl
+	~		|
+
+Effect of match on ability to deliver safe care(
+	[(-1,0)-(1,1)],(-1,1),(0,1),(0.1,0.9),(0.2,0.75),(0.3,0.4),(0.4,0),(0.42,0),(1,0))
+	~	dmnl
+	~		|
+
+Effect of ability to deliver safe care on moral distress lookup(
+	[(0,0)-(2,2)],(0,1),(0.5,0.3),(0.7,0.1),(0.8,0.05),(1,0))
+	~	dmnl
+	~		|
+
+Effect of affirmation on moral distress=
+	Effect of affirmation on moral distress lookup(Affirmation for decisions from team/Maximum vas score\
+		)
+	~	dmnl
+	~		|
+
+Psychosomatic complaints= INTEG (
+	Increase of psychosomatic complaints-Decrease of psychosomatic complaints,
+		0)
+	~	vas
+	~		|
+
+Effect of professional development on time lookup(
+	[(0,0)-(1,25)],(0,5),(0.1,5),(0.2,10),(0.6,20),(1,25))
+	~	minutes/patient
+	~		|
+
+Normal increase of moral distress=
+	0.5
+	~	vas/Week
+	~		|
+
+Communication and training tasks=
+	Meetings+Time for professional development+Training students
+	~	minutes/patient
+	~		|
+
+Training students=
+	5
+	~	minutes/patient
+	~		|
+
+Effect of total amount of distress on task performance lookup(
+	[(-1,0)-(1,2)],(-1,1),(0,1),(0.3,1),(0.5,1.1),(0.7,1.3),(1,1.7))
+	~	dmnl
+	~		|
+
+Effect of being understaffed during shifts lookup(
+	[(0,0)-(1,1)],(0,1),(0.1,0.9),(0.3,0.4),(0.7,0.4),(0.8,0.4),(0.9,0.4),(1,0.4),(3,0.4\
+		))
+	~	dmnl
+	~		|
+
+Meetings=
+	5
+	~	minutes/patient
+	~		|
+
+Average experience of nurses=
+	5
+	~	years
+	~		|
+
+Average objective task demand per week=
+	ZIDZ(Objective task demand to date,Time)
+	~	hours/Week
+	~		|
+
+Maximum meeting time per patient=
+	15
+	~	minutes/patient
+	~		|
+
+Patient dependency to direct care time lookup(
+	[(0,0)-(1,2)],(0,0.8),(0.4,0.95),(0.5,1),(0.6,1.1),(0.7,1.3),(0.8,1.6),(0.9,1.95),(1\
+		,2))
+	~	dmnl
+	~		|
+
+Consultation opportunities with the team=
+	Team psychological safety*(Meetings/Maximum meeting time per patient)
+	~	vas
+	~		|
+
+Patient dependency to indirect care time lookup(
+	[(0,0)-(1,2)],(0,0.7),(0.1,0.7),(0.2,0.75),(0.3,0.8),(0.4,0.9),(0.5,1),(0.6,1.1),(0.7\
+		,1.2),(0.8,1.25),(0.9,1.3),(1,1.3))
+	~	dmnl
+	~		|
+
+Effect of experience on decision making autonomy=
+	Effect of experience on decision making autonomy lookup(Average experience of nurses\
+		/Maximum years of experience of nurses)
+	~	dmnl
+	~		|
+
+Effect of experience on decision making autonomy lookup(
+	[(0,0)-(1,1)],(0,0.6),(0.04,0.9),(0.08,0.95),(0.12,0.98),(0.16,1),(1,1))
+	~	dmnl
+	~		|
+
+Effect of experience on resilience=
+	Effect of experience on resilience lookup(Average experience of nurses/Maximum years of experience of nurses\
+		)
+	~	dmnl
+	~		|
+
+Effect of experience on resilience lookup(
+	[(0,0)-(1,1)],(0,0.6),(0.04,0.85),(0.08,0.93),(0.12,0.95),(1,1))
+	~	dmnl
+	~		|
+
+Effect of match on positivity of shifts lookup(
+	[(-1,0)-(1,2)],(-1,0),(-0.6,0.7),(-0.3,0.97),(0,1),(0.3,0.97),(0.6,0.7),(1,0))
+	~	dmnl
+	~		|
+
+Effect of task efficiency on care time per patient lookup(
+	[(0,0)-(1,2)],(0,1.5),(0.3,1.2),(0.5,1.1),(0.7,1),(1,0.8))
+	~	dmnl
+	~		|
+
+Satisfaction with scheduling=
+	0.8
+	~	dmnl
+	~		|
+
+Objective task demand to date= INTEG (
+	Objective task demand per week,
+		0)
+	~	hours
+	~		|
+
+Maximum vas score=
+	1
+	~	vas
+	~		|
+
+Initial direct care time per patient=
+	22
+	~	minutes/patient
+	~		|
+
+Maximum patient dependency=
+	18
+	~	JDT
+	~		|
+
+Maximum years of experience of nurses=
+	40
+	~	years
+	~		|
+
+Maximum level of distress=
+	1
+	~	vas
+	~		|
+
+Supportive leadership=
+	0.9
+	~	vas
+	~	Between 0 and 1
+	|
+
+Team cohesion= INTEG (
+	Increase in team cohesion-Decrease in team cohesion,
+		Trust in other colleagues)
+	~	vas
+	~		|
+
+Normal rate of team cohesion=
+	0.3
+	~	vas/Week
+	~		|
+
+Normal increase of depersonalization rate=
+	0.8
+	~	vas/Week
+	~		|
+
+Moral distress= INTEG (
+	Increase of moral distress-Decrease of moral distress,
+		0)
+	~	vas
+	~		|
+
+Trust in other colleagues=
+	0.9
+	~	vas
+	~		|
+
+Agreed upon shifts per nurse=
+	4
+	~	shifts/nurse/Week
+	~		|
+
+Effect of total amount distress on positivity of shifts lookup(
+	[(0,0)-(1,2)],(0,1),(0.3,1),(0.5,1),(0.6,0.95),(0.9,0.1),(1,0))
+	~	dmnl
+	~		|
+
+Effect of shift balance on emotional distress(
+	[(0,0)-(10,1)],(0,1),(1,1),(2,0.88),(3,0.75),(4,0.4),(5,0.1),(5.1,0),(10,0))
+	~	dmnl
+	~		|
+
+Time that moral distress leads to depersonalization=
+	8
+	~	weeks
+	~		|
+
+Time that stress turns into physical complaints=
+	8
+	~	Week
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 104
+	~	weeks
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	weeks
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 0.25
+	~	weeks [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.03125
+	~	weeks [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Complete model
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,48,2
+10,1,Emotional distress,1314,-433,48,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,1037,-431,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,5,2,100,0,0,22,0,192,0,-1--1--1,,1|(1095,-431)|
+1,4,5,1,4,0,0,22,0,192,0,-1--1--1,,1|(1210,-431)|
+11,5,0,1148,-431,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,6,Increase of emotional distress,1148,-394,85,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Effect of shift balance on emotional distress,711,-545,85,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Direct care time per patient,-333,-1854,74,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,9,Indirect care time per patient,-18,-1873,82,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,10,Total amount of distress,1825,-663,73,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,11,Eustress,2083,-763,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,12,1,10,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,13,Psychosomatic complaints,2239,-113,68,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,14,48,1973,-111,10,6,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,17,14,100,0,0,22,0,192,0,-1--1--1,,1|(2012,-111)|
+1,16,17,13,4,0,0,22,0,192,0,-1--1--1,,1|(2112,-111)|
+11,17,0,2048,-111,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,18,Increase of psychosomatic complaints,2048,-60,69,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Time that stress turns into physical complaints,2208,53,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,20,19,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,21,Depersonalization,1301,-246,73,30,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,22,24,1,100,0,0,22,0,192,0,-1--1--1,,1|(1325,-380)|
+1,23,24,21,4,0,0,22,0,192,0,-1--1--1,,1|(1325,-310)|
+11,24,0,1325,-350,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,25,Coping through depersonalization,1416,-350,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,26,1,25,1,0,0,0,0,192,0,-1--1--1,,1|(1356,-367)|
+10,27,Moral distress,2727,-436,42,29,3,3,0,0,-1,1,0,0,0,0,0,0,0,0
+12,28,48,2497,-434,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,29,31,28,100,0,0,22,0,192,0,-1--1--1,,1|(2548,-434)|
+1,30,31,27,4,0,0,22,0,192,0,-1--1--1,,1|(2643,-434)|
+11,31,0,2596,-434,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,32,Increase of moral distress,2596,-397,66,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,33,48,928,-237,10,6,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,34,36,33,100,0,0,22,0,192,0,-1--1--1,,1|(928,-245)|
+1,35,36,21,4,0,0,22,0,192,0,-1--1--1,,1|(1157,-245)|
+11,36,0,1080,-245,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,37,Increase of depersonalization,1080,-208,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,38,Moral distress,632,87,43,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,39,Time that moral distress leads to depersonalization,802,92,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,40,27,10,1,0,0,0,0,192,0,-1--1--1,,1|(2334,-610)|
+1,41,27,32,1,0,0,0,0,192,0,-1--1--1,,1|(2670,-409)|
+1,42,1,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,43,Effect of total amount distress on positivity of shifts lookup,1520,-757,105,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,44,Shifts,702,-1361,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,45,48,374,-1361,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,48,45,100,0,0,22,0,192,0,-1--1--1,,1|(443,-1361)|
+1,47,48,44,4,0,0,22,0,192,0,-1--1--1,,1|(587,-1361)|
+11,48,0,507,-1361,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,49,Added shifts per week,507,-1324,58,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,50,Agreed upon shifts per nurse,1050,-1518,73,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+10,51,Percentage of scheduled shifts that are positive,1274,-875,75,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,52,Percentage of extra shifts that are positive,1297,-1076,73,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,53,Perceived positive shifts,1073,-1359,63,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,54,Perceived negative shifts,703,-1128,67,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,55,57,44,100,0,0,22,0,192,0,-1--1--1,,1|(798,-1358)|
+1,56,57,53,4,0,0,22,0,192,0,-1--1--1,,1|(937,-1358)|
+11,57,0,857,-1358,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,58,Perceived positive shifts completed per week,857,-1307,83,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,59,61,44,100,0,0,22,0,192,0,-1--1--1,,1|(700,-1297)|
+1,60,61,54,4,0,0,22,0,192,0,-1--1--1,,1|(700,-1200)|
+11,61,0,700,-1249,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,62,Perceived negative shifts completed per week,794,-1249,86,43,40,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,63,Scheduled shifts completed per week,939,-1120,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,64,Shift balance,850,-616,60,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,65,Short term absenteeism,1865,-1130,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,66,Extra shifts open per week,905,-1516,69,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,67,50,66,1,0,0,0,0,192,0,-1--1--1,,1|(985,-1494)|
+1,68,52,62,1,0,0,0,0,192,0,-1--1--1,,1|(887,-1062)|
+12,69,48,1593,-433,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,70,72,1,100,0,0,22,0,192,0,-1--1--1,,1|(1428,-433)|
+1,71,72,69,4,0,0,22,0,192,0,-1--1--1,,1|(1545,-433)|
+11,72,0,1501,-433,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,73,Decrease of emotional distress,1501,-396,85,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,74,1,73,1,0,0,0,0,192,0,-1--1--1,,1|(1432,-446)|
+12,75,48,3073,-436,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,76,78,27,100,0,0,22,0,192,0,-1--1--1,,1|(2839,-436)|
+1,77,78,75,4,0,0,22,0,192,0,-1--1--1,,1|(2992,-436)|
+11,78,0,2916,-436,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,79,Decrease of moral distress,2916,-399,66,29,40,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+1,80,27,79,1,0,0,0,0,192,0,-1--1--1,,1|(2844,-436)|
+10,81,Team cohesion,3140,-1157,42,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,82,48,2883,-1159,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,83,85,82,100,0,0,22,0,192,0,-1--1--1,,1|(2926,-1159)|
+1,84,85,81,4,0,0,22,0,192,0,-1--1--1,,1|(3034,-1159)|
+11,85,0,2965,-1159,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,86,Increase in team cohesion,2965,-1122,73,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,87,Trust in other colleagues,3190,-1240,63,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,88,Depersonalization,2907,-951,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,89,Normal increase of depersonalization rate,1139,-113,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,90,87,81,1,0,0,0,0,192,1,-1--1--1,,1|(3183,-1201)|
+1,91,81,86,1,0,0,0,0,192,0,-1--1--1,,1|(3027,-1129)|
+10,92,Normal rate of team cohesion,2832,-1038,68,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,93,92,86,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,94,48,3474,-1157,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,95,97,81,100,0,0,22,0,192,0,-1--1--1,,1|(3249,-1157)|
+1,96,97,94,4,0,0,22,0,192,0,-1--1--1,,1|(3396,-1157)|
+11,97,0,3323,-1157,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,98,Decrease in team cohesion,3323,-1120,68,29,40,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,99,Supportive leadership,2970,-1451,51,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,100,Maximum level of distress,1333,-566,71,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,101,Maximum patient dependency,-132,-2029,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,102,Patient dependency to direct care time lookup,-559,-1979,104,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,103,101,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,104,102,8,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,105,Agreed upon shifts per nurse,275,-1215,78,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,106,105,49,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,107,Objective task demand per shift,552,-1570,80,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,108,Average experience of nurses,3651,-1792,63,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,109,Maximum years of experience of nurses,3582,-1875,86,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,110,Nurse resilience,3761,-1766,45,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,111,Effect of experience on resilience,3834,-1846,66,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,112,Effect of experience on resilience lookup,4027,-1783,78,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,113,108,111,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,114,109,111,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,115,112,111,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,116,111,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,117,Patient dependency to indirect care time lookup,-391,-2206,104,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,118,Initial direct care time per patient,-552,-1847,78,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,119,118,8,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,120,Match between competency and patient dependency,2107,-1629,101,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,121,Maximum vas score,1841,-1693,48,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,122,Match between competency and patient dependency,1179,-635,99,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,123,Effect of match on positivity of shifts lookup,1074,-729,83,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,124,Team psychological safety,2708,-1451,62,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,125,81,124,1,0,0,0,0,192,0,-1--1--1,,1|(2818,-1314)|
+1,126,99,124,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,127,Objective task demand to date,112,-1665,75,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,128,48,-245,-1663,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,129,131,128,100,0,0,22,0,192,0,-1--1--1,,1|(-170,-1663)|
+1,130,131,127,4,0,0,22,0,192,0,-1--1--1,,1|(-28,-1663)|
+11,131,0,-99,-1663,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,132,Objective task demand per week,-99,-1612,84,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,133,Average objective task demand per week,365,-1588,81,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,134,Time,181,-1541,35,16,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,135,127,133,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,136,134,133,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,137,133,107,1,0,0,0,0,192,0,-1--1--1,,1|(440,-1611)|
+10,138,Nurses' willingness to be flexible,1091,-1729,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,139,Extra shifts completed per week,1201,-1445,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,140,138,139,1,0,0,0,0,192,0,-1--1--1,,1|(1177,-1605)|
+1,141,66,139,1,0,0,0,0,192,0,-1--1--1,,1|(1037,-1466)|
+10,142,Decision making autonomy,3042,-1676,76,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,143,124,142,1,0,0,0,0,192,0,-1--1--1,,1|(2828,-1587)|
+10,144,Effect of experience on decision making autonomy,3344,-1790,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,145,Effect of experience on decision making autonomy lookup,3340,-1915,105,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,146,108,144,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,147,109,144,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,148,145,144,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,149,144,142,1,0,0,0,0,192,0,-1--1--1,,1|(3185,-1767)|
+10,150,Job control,2638,-1616,50,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,151,142,150,1,0,0,0,0,192,0,-1--1--1,,1|(2837,-1678)|
+10,152,Consultation opportunities with the team,2579,-1531,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,153,Meetings,2303,-1663,43,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,154,152,150,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,155,124,152,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,156,153,152,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,157,Maximum meeting time per patient,2383,-1509,76,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,158,157,152,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,159,Task efficiency from team organisation,3125,-1455,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,160,152,159,1,0,0,0,0,192,0,-1--1--1,,1|(2854,-1511)|
+10,161,Effect of task efficiency on care time per patient,-96,-1494,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,162,Effect of task efficiency on care time per patient lookup,-96,-1372,104,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,163,Task efficiency from team organisation,-332,-1483,72,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,164,162,161,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,165,163,161,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,166,161,132,1,0,0,0,0,192,0,-1--1--1,,1|(-108,-1546)|
+10,167,Satisfaction with scheduling,1074,-808,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,168,167,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,169,Team resilience,2854,-1392,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,170,81,169,1,0,0,0,0,192,0,-1--1--1,,1|(3022,-1320)|
+1,171,99,169,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,172,Nurse resilience,2230,-679,51,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,173,Team resilience,2142,-845,51,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,174,173,11,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,175,172,11,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,176,11,10,1,0,0,0,0,192,0,-1--1--1,,1|(1958,-723)|
+10,177,Task performance based on stress level,1874,-772,61,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,178,Effect of total amount of distress on task performance lookup,1915,-875,99,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,179,178,177,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,180,Task performance based on stress level,-359,-1731,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,181,180,132,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,182,Emotional demand during shifts,1292,-748,88,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,183,43,182,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,184,123,182,1,11,0,0,0,192,0,-1--1--1,,1|(1173,-763)|
+1,185,122,182,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,186,182,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,187,Effect of being understaffed during shifts,991,-905,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,188,Effect of being understaffed during shifts lookup,830,-813,93,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,189,187,51,1,0,0,0,0,192,0,-1--1--1,,1|(1112,-868)|
+10,190,Communication and training tasks,2308,-1791,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,191,Training students,2517,-1853,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,192,153,190,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,193,191,190,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,194,Communication and training tasks,402,-1973,99,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,195,Time for professional development,2221,-1919,62,43,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,196,195,190,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,197,Effect of professional development on time lookup,2156,-2078,99,43,8,3,11,0,-1,1,0,0,0,0,0,0,0,0
+1,198,197,195,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,199,48,2567,-113,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,200,202,13,100,0,0,22,0,192,0,-1--1--1,,1|(2366,-113)|
+1,201,202,199,4,0,0,22,0,192,0,-1--1--1,,1|(2497,-113)|
+11,202,0,2432,-113,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,203,Decrease of psychosomatic complaints,2432,-62,69,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,204,Ability to physically rest in between shifts,2558,56,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,205,204,203,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,206,Affirmation for decisions from team,3157,-636,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,207,Supportive leadership,3181,-756,56,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,208,Consultation opportunities with the team,3404,-657,85,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,209,208,206,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,210,207,206,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,211,Normal increase of moral distress,2478,-322,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,212,211,32,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,213,Coping with emotional distress through depersonalization,1561,-237,124,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,214,213,25,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,215,Maximum level of distress,2732,-538,87,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,216,215,32,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,217,Maximum vas score,2484,-907,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,218,Psychosomatic complaints,2027,-1409,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,219,Effect of affirmation on moral distress lookup,2863,-687,66,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,220,Maximum vas score,3259,-523,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,221,Effect of affirmation on moral distress,2995,-553,66,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,222,219,221,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,223,220,221,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,224,206,221,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,225,221,79,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,226,Ratio of direct and indirect care time,-139,-1811,85,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,227,8,226,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,228,9,226,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,229,Ability to deliver safe care,2971,-163,75,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,230,Ratio of direct and indirect care time,2795,328,79,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,231,Effect of task demand per shift on ability to deliver safe care lookup,3086,164,118,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,232,Job control,2765,-93,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,233,232,229,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,234,Match between competency and patient dependency,3318,-189,99,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,235,234,229,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,236,Effect of match on ability to deliver safe care,3329,-69,83,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,237,236,229,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,238,Effect of ability to deliver safe care on moral distress,2672,-264,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,239,Effect of ability to deliver safe care on moral distress lookup,2944,-262,99,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,240,Maximum vas score,2647,-162,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,241,229,238,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,242,240,238,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,243,239,238,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,244,238,32,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,245,100,73,1,11,0,0,0,64,0,-1--1--1,,1|(1449,-508)|
+10,246,Normal increase of emotional distress,1011,-317,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,247,Initial emotional distress level,1332,-505,57,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,248,247,1,0,0,0,0,0,64,1,-1--1--1,,1|(0,0)|
+1,249,100,6,1,11,0,0,0,64,0,-1--1--1,,1|(1199,-497)|
+10,250,Workplace positivity,1342,273,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,251,Positive interpersonal interactions,903,244,63,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,252,Team cohesion,711,178,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,253,Ability to deliver safe care,1095,372,80,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,254,Interactions with colleagues outside of nursing team,593,359,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,255,252,251,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,256,254,251,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,257,251,250,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,258,253,251,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,259,253,250,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,260,Effect of workplace positivity on depersonalization,1106,11,87,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,261,Effect of workplace positivity on depersonalization lookup,1097,178,116,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,262,Maximum vas score,959,117,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,263,262,260,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,264,250,260,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,265,261,260,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,266,260,37,1,0,0,0,0,192,0,-1--1--1,,1|(1021,-91)|
+10,267,Job satisfaction,2572,409,53,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,268,250,267,1,0,0,0,0,192,0,-1--1--1,,1|(1955,501)|
+1,269,232,267,1,0,0,0,0,192,0,-1--1--1,,1|(2776,95)|
+10,270,Career expectation fulfillment,1873,195,88,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,271,Work life balance,1718,668,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,272,Quality of private life,1508,718,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,273,Initial ability to destress,1962,933,57,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,274,272,271,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,275,Short term absenteeism,2411,1222,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,276,Emotional distress,1391,519,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,277,Intention to stay in the profession,2026,294,87,29,8,3,0,24,-1,0,0,0,0-0-0,0-0-0,|16|B|0-0-0,0,0,0,0,0,0
+1,278,271,277,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,279,267,277,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,280,270,277,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,281,Effect of emotional distress on private life,1598,588,86,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,282,Effect of emotional distress on private life lookup,1334,627,86,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,283,Maximum level of distress,1594,476,87,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,284,276,281,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,285,283,281,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,286,282,281,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,287,281,271,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,288,Effect of work life balance on ability to destress,1898,790,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,289,Effect of work life balance on ability to destress lookup,2075,670,103,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,290,Maximum vas score,2079,881,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,291,289,288,1,11,0,0,0,192,0,-1--1--1,,1|(1994,736)|
+1,292,290,288,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,293,271,288,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,294,Effect of short term absenteeism on ability to destress,2420,1078,104,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,295,Effect of short term absenteeism on ability to destress lookup,2793,1080,125,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,296,275,294,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,297,295,294,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,298,246,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,299,Team cohesion,1849,-436,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,300,Effect of team cohesion on emotional distress,1903,-293,121,43,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,301,Effect of team cohesion on capacity to destress emotionally lookup,2036,-457,121,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,302,299,300,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,303,301,300,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,304,Maximum vas score,2087,-388,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,305,304,300,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,306,Effect of job control on emotional distress,1661,-490,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,307,Effect of long term absenteeism on emotional distress,807,-336,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,308,Job control,1847,-486,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,309,Maximum vas score,1722,-584,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,310,Effect of job control on emotional distress lookup,1890,-542,103,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,311,Effect of long term absenteeism on emotional distress lookup,445,-339,122,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,312,308,306,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,313,309,306,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,314,310,306,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,315,311,307,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,316,Total effect on emotional distress,1002,-524,85,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,317,64,316,1,0,0,0,0,192,0,-1--1--1,,1|(920,-545)|
+1,318,7,316,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,319,307,316,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,320,316,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,321,Success of interventions,3566,-1481,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,322,Success of interventions,2274,-738,67,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,323,322,11,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,324,Nurses initially scheduled,300,-1314,49,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,325,324,49,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,326,89,37,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,327,21,37,1,0,0,0,0,192,0,-1--1--1,,1|(1130,-269)|
+10,328,Maximum level of distress,827,-160,87,29,8,2,11,3,-1,1,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,329,Effect of moral distress on depersonalization,801,-41,88,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,330,38,329,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,331,39,329,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,332,328,37,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,333,Effect of moral distress on depersonalization lookup,505,-31,105,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,334,333,329,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,335,328,329,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,336,329,37,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,337,306,73,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,338,48,1301,-47,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,339,341,21,100,0,0,22,0,192,0,-1--1--1,,1|(1301,-179)|
+1,340,341,338,4,0,0,22,0,192,0,-1--1--1,,1|(1301,-93)|
+11,341,0,1301,-136,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,342,Decrease of depersonalization,1392,-136,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,343,21,342,1,0,0,0,0,192,0,-1--1--1,,1|(1397,-185)|
+10,344,Maximum level of distress,1641,-128,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,345,344,342,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,346,Ability to destress,1987,1019,66,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,347,48,1708,1020,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,348,350,347,100,0,0,22,0,192,0,-1--1--1,,1|(1765,1020)|
+1,349,350,346,4,0,0,22,0,192,0,-1--1--1,,1|(1873,1020)|
+11,350,0,1819,1020,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,351,Increase in ability to destress,1819,1057,87,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,352,288,351,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,353,273,346,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+1,354,346,351,1,0,0,0,0,192,0,-1--1--1,,1|(1958,1066)|
+10,355,Weight of eustress in total amount of distress,2059,-702,85,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,356,355,10,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,357,Initial value of shifts,356,-1437,54,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,358,105,357,1,0,0,0,0,192,0,-1--1--1,,1|(239,-1337)|
+1,359,324,357,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,360,357,44,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+10,361,"1 week",469,-1508,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,362,361,357,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,363,Objective task demand per shift,1474,-818,86,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,364,Effect of task demand on positivity of shift,1471,-902,75,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,365,Effect of task demand on positivity of shift lookup,1688,-819,100,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,366,Threshold for busy shift,1705,-899,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,367,363,364,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,368,365,364,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,369,366,364,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,370,364,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,371,48,2331,1019,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,372,374,346,100,0,0,22,0,192,0,-1--1--1,,1|(2117,1019)|
+1,373,374,371,4,0,0,22,0,192,0,-1--1--1,,1|(2257,1019)|
+11,374,0,2187,1019,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,375,Decrease in ability to destress,2187,1070,55,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,376,294,375,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,377,Normal ability to destress,1996,1164,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,378,377,351,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,379,377,375,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,380,346,375,1,0,0,0,0,192,0,-1--1--1,,1|(2051,1072)|
+10,381,Maximum level of distress,1996,1235,87,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,382,Effect of psychosomatic complaints on ability to destress,2214,1166,102,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,383,Effect of psychosomatic complaints on ability to destress lookup,2412,1336,107,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,384,381,382,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,385,383,382,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,386,382,375,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,387,215,79,1,11,0,0,0,192,0,-1--1--1,,1|(2846,-491)|
+10,388,Perception of extra shifts,1451,-1164,104,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,389,388,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,390,Success of intervention determined by competency,3392,-1406,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,391,390,321,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,392,Training and development,3172,-1601,62,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,393,Patient transport,86,-2132,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,394,Administrative tasks,246,-2054,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,395,393,394,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,396,Maximum patient dependency,2197,-1724,88,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,397,396,120,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,398,Effect of patient dependency on indirect care tasks,-99,-2155,84,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,399,101,398,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,400,117,398,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,401,Preparing equipment and managing medication,410,-1875,99,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,402,194,394,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,403,398,9,1,0,0,0,0,192,0,-1--1--1,,1|(-45,-2000)|
+10,404,Indirect care tasks,148,-1958,59,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,405,393,404,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,406,394,404,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,407,194,404,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,408,401,404,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,409,404,9,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,410,48,703,-1032,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,411,413,54,100,0,0,22,0,192,0,-1--1--1,,1|(703,-1079)|
+1,412,413,410,4,0,0,22,0,192,0,-1--1--1,,1|(703,-1044)|
+11,413,0,703,-1053,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,414,Fading negative shift memory,784,-1053,73,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,415,48,1321,-1359,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,416,418,53,100,0,0,22,0,192,0,-1--1--1,,1|(1177,-1359)|
+1,417,418,415,4,0,0,22,0,192,0,-1--1--1,,1|(1270,-1359)|
+11,418,0,1224,-1359,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,419,Fading positive shift memory,1224,-1322,69,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,420,58,419,1,0,0,0,0,192,0,-1--1--1,,1|(1047,-1412)|
+1,421,62,414,1,0,0,0,0,192,0,-1--1--1,,1|(782,-1125)|
+10,422,Perceived negative shifts,754,-743,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,423,Perceived positive shifts,595,-687,69,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,424,423,64,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,425,422,64,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,426,Vacant shifts,712,-1571,63,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,427,429,44,100,0,0,22,0,192,0,-1--1--1,,1|(708,-1415)|
+1,428,429,426,4,0,0,22,0,192,0,-1--1--1,,1|(708,-1500)|
+11,429,0,708,-1452,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,430,Vacant shifts per week,786,-1452,70,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,431,48,712,-1666,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,432,434,426,100,0,0,22,0,192,0,-1--1--1,,1|(712,-1611)|
+1,433,434,431,4,0,0,22,0,192,0,-1--1--1,,1|(712,-1646)|
+11,434,0,712,-1629,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,435,Vacant shift dissipation,775,-1629,55,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,436,430,435,1,0,0,0,0,192,0,-1--1--1,,1|(787,-1561)|
+1,437,139,430,1,0,0,0,0,192,0,-1--1--1,,1|(1044,-1434)|
+1,438,66,430,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,439,Vacant shifts,739,-873,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,440,188,187,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,441,439,187,1,0,0,0,0,192,0,-1--1--1,,1|(847,-874)|
+10,442,Team cohesion,876,-1807,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,443,Work life balance,1939,-1553,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,444,Effect of work life balance on willingness to be flexible lookup,1857,-1615,103,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,445,Effect of team cohesion on willingness to be flexible lookup,1090,-1902,121,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,446,Effect of team cohesion on willingness to be flexible,1090,-1807,121,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,447,Effect of work life balance on willingsness to be flexible,1607,-1657,117,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,448,442,446,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,449,445,446,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,450,121,447,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,451,444,447,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,452,443,447,1,0,0,0,0,192,0,-1--1--1,,1|(1749,-1562)|
+1,453,447,138,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,454,446,138,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,455,Initial willingness to be flexible,889,-1739,79,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,456,455,138,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,457,Maximum vas score,3212,-1033,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,458,Effect of supportive leadership on training and development lookup,2961,-1596,95,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,459,Weight of success of interventions in eustress,2266,-809,88,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,460,459,11,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,461,Weight of career in intention to stay,2081,215,87,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,462,Weight of job satisfaction in intention to stay,2113,404,76,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,463,Weight of work life balance in intention to stay,1826,395,86,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,464,463,277,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,465,462,277,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,466,461,277,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,467,Weight of workplace positivity in job satisfaction,2348,415,93,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,468,Weight of psychosomatic complaints in job satisfaction,2391,544,82,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,469,Weight of job control in job satisfaction,2404,309,61,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,470,467,267,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,471,469,267,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,472,468,267,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,473,Weight of ability to deliver safe care in workplace adversity,1331,390,92,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,474,473,250,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,475,Weight of team cohesion in positive interactions,647,258,94,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,476,475,251,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,477,Weight of ability to deliver safe care positive interactions,941,441,96,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,478,Weight of interactions outside team in positive interactions,754,415,101,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,479,478,251,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,480,477,251,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,481,Weight of supportive leadership in affirmation for decisions,3388,-773,114,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,482,481,206,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,483,Weight of team cohesion in team resilience,2920,-1300,79,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,484,483,169,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,485,Weight of skill mix and competency in decision making autonomy,3099,-1816,108,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,486,485,142,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,487,Weight of skill mix and competency in job control,2717,-1806,103,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,488,Weight of decision making autonomy in job control,2552,-1729,84,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,489,488,150,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,490,487,150,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,491,Weight of consultation opportunities in job control,2475,-1646,85,33,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,492,491,150,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,493,Weight of team cohesion in team psychological safety,2538,-1415,91,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,494,493,124,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,495,Weight of skill mix and competency in task efficiency,3148,-1344,103,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,496,495,159,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,497,Average patient dependency,-325,-2066,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,498,13,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,499,Maximum level of distress,2007,54,87,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,500,499,18,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,501,Number of patients admitted per week,-357,-1571,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,502,501,132,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,503,497,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,504,497,398,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,505,Average patient dependency,1907,-1757,79,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,506,505,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,507,300,73,1,0,0,0,0,192,0,-1--1--1,,1|(1709,-393)|
+10,508,Normal decrease of depersonalization,1504,-38,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,509,508,342,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,510,Threshold for busy shift,3263,44,68,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,511,Objective task demand per shift,2878,109,86,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,512,Effect of task demand per shift on ability to deliver safe care,3070,13,100,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,513,511,512,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,514,231,512,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,515,510,512,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,516,512,229,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,517,Ability to destress,3882,-1713,47,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,518,517,110,1,0,0,0,0,192,0,-1--1--1,,1|(3818,-1746)|
+10,519,Satisfaction with ratio of direct and indirect care time,2769,468,102,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,520,519,267,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,521,230,519,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,522,Preferred ratio of direct and indirect care time,2978,582,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,523,522,519,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,524,Effect of ratio of direct and indirect care time on job satisfaction lookup,3109,403,121,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,525,524,519,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,526,Skill mix and competency of nursing team,3636,-1600,88,43,3,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,527,Education level of nurses,3581,-1719,70,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,528,527,526,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+12,529,48,3358,-1610,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,530,532,529,100,0,0,22,0,192,0,-1--1--1,,1|(3397,-1610)|
+1,531,532,526,4,0,0,22,0,192,0,-1--1--1,,1|(3493,-1610)|
+11,532,0,3432,-1610,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,533,Professional development,3432,-1573,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,534,Time before training is completed,3253,-1541,56,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,535,Training and development,2438,-1943,67,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,536,535,195,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,537,392,533,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,538,534,533,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,539,526,142,1,0,0,0,0,192,0,-1--1--1,,1|(3450,-1713)|
+1,540,526,150,1,0,0,0,0,192,0,-1--1--1,,1|(3234,-1501)|
+1,541,526,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,542,526,321,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,543,526,159,1,0,0,0,0,192,0,-1--1--1,,1|(3244,-1455)|
+10,544,Skill mix and competency of nursing team,2042,-1535,68,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,545,544,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,546,44,107,1,0,0,0,0,192,0,-1--1--1,,1|(603,-1419)|
+1,547,526,533,1,0,0,0,0,192,0,-1--1--1,,1|(3510,-1638)|
+10,548,Maximum vas score,3387,-1678,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,549,548,533,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,550,Psychosomatic complaints,2174,1284,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,551,550,382,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,552,13,267,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,553,Psychosomatic complaints,1568,-305,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,554,Psychosomatic complaints,3028,-327,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,555,553,73,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,556,554,79,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,557,10,182,1,0,0,0,0,192,0,-1--1--1,,1|(1415,-686)|
+1,558,100,182,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,559,Maximum level of distress,1743,-718,87,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,560,10,177,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,561,559,177,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,562,Nurses initially scheduled,2557,1186,54,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,563,562,294,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,564,Nurses initially scheduled,691,-231,54,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,565,564,307,1,0,0,0,0,192,0,-1--1--1,,1|(764,-264)|
+10,566,Agreed upon shifts per nurse,1046,-1037,78,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,567,566,63,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,568,Emotional demand during shifts,1294,-956,72,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,569,568,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,570,99,392,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,571,458,392,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,572,Maximum vas score,3267,-1696,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,573,572,392,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,574,Intention to stay in the profession,2102,-979,83,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,575,Time for psychosomatic complaints to have effect on stress,1668,-352,115,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,576,575,73,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,577,Time for psychosomatic complaints to have effect on stress,3177,-384,120,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,578,577,79,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,579,13,204,1,0,0,0,0,192,0,-1--1--1,,1|(2373,-8)|
+10,580,Percentage that resting reduces psychosomatic complaints,2578,171,118,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,581,580,204,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,582,Number of nurses available,2172,-1231,84,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,583,Long term absenteeism pulse,2205,-1294,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,584,Effect of psychosomatic complaints on interval of absenteeism,1824,-1317,113,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,585,Maximum vas score,1831,-1398,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,586,Nurses initially scheduled,2056,-1054,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,587,Initial number of nurses available,2063,-1134,77,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,588,65,587,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,589,586,587,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,590,587,582,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+12,591,48,2172,-1047,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,592,594,582,100,0,0,22,0,192,0,-1--1--1,,1|(2172,-1170)|
+1,593,594,591,4,0,0,22,0,192,0,-1--1--1,,1|(2172,-1091)|
+11,594,0,2172,-1132,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,595,Nurses leaving the profession,2248,-1132,68,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,596,INITIAL TIME,2411,-1330,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,597,FINAL TIME,2409,-1279,33,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,598,596,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,599,597,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,600,Interval of nurses absent long term,2039,-1313,80,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+1,601,218,600,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,602,584,600,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,603,585,600,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,604,600,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,605,218,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,606,Number of nurses available,1051,-1609,76,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,607,Nurses initially scheduled,901,-1609,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,608,607,66,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,609,606,66,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,610,606,139,1,0,0,0,0,192,0,-1--1--1,,1|(1123,-1546)|
+10,611,Number of nurses available,1146,-1080,76,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,612,611,63,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,613,Interval of nurses leaving the profession,2302,-945,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,614,Effect of intention to stay on nurses leaving the profession lookup,2526,-985,102,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,615,Nurses leaving pulse,2311,-1055,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,616,INITIAL TIME,2457,-1037,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,617,FINAL TIME,2382,-1146,33,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,618,617,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,619,616,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,620,614,613,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,621,217,613,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,622,574,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,623,613,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,624,615,595,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,625,574,613,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,626,48,3986,-1600,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,627,629,526,100,0,0,22,0,192,0,-1--1--1,,1|(3784,-1600)|
+1,628,629,626,4,0,0,22,0,192,0,-1--1--1,,1|(3916,-1600)|
+11,629,0,3850,-1600,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,630,Decrease of competency,3850,-1563,80,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,631,Competency lost by nurses leaving,3771,-1478,80,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,632,631,630,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,633,Nurses leaving the profession,3932,-1481,73,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,634,633,630,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,635,Long Term Absenteeism,2547,-1232,61,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,636,638,582,100,0,0,22,0,192,0,-1--1--1,,1|(2306,-1235)|
+1,637,638,635,4,0,0,22,0,192,0,-1--1--1,,1|(2427,-1235)|
+11,638,0,2362,-1235,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,639,Long term absenteeism flow,2362,-1198,81,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,640,583,639,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,641,Long term absenteeism flow,4069,-1531,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,642,641,630,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,643,Long Term Absenteeism,549,-239,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,644,643,307,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,645,Effect of depersonalization on increase of team cohesion lookup,3135,-934,122,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+10,646,Effect of depersonalization on increase of team cohesion,3032,-1037,99,37,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,647,457,646,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,648,645,646,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,649,88,646,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,650,646,86,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,651,457,86,1,11,0,0,0,192,0,-1--1--1,,1|(3132,-1077)|
+10,652,Loss of team cohesion from nurses leaving,3383,-1256,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,653,652,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,654,Long term absenteeism flow,3585,-1136,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,655,Nurses leaving the profession,3502,-1055,73,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,656,655,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,657,654,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,658,10,18,1,0,0,0,0,192,0,-1--1--1,,1|(2170,-450)|
+10,659,Psychosomatic complaints to long term absenteeism threshold,2208,-1422,120,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,660,659,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,661,Intention to actually leaving threshold,2586,-1074,71,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,662,661,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,663,Care time per patient,-110,-1734,53,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,664,8,663,1,0,0,0,0,192,0,-1--1--1,,1|(-248,-1774)|
+1,665,9,663,1,0,0,0,0,192,0,-1--1--1,,1|(-16,-1803)|
+10,666,Minutes in an hour,65,-1761,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,667,666,663,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,668,663,132,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,669,52,58,1,0,0,0,0,192,0,-1--1--1,,1|(1197,-1234)|
+10,670,Shifts,830,-925,38,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,671,670,187,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,672,"1 week",781,-1699,45,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,673,672,435,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,674,Extra shifts completed per week,1097,-1246,68,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,675,63,62,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,676,674,58,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,677,674,62,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,678,63,58,1,0,0,0,0,192,0,-1--1--1,,1|(931,-1224)|
+10,679,Percentage of scheduled shifts that are positive,1086,-1165,81,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,680,679,62,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,681,679,58,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,682,Maximum vas score,1299,-1799,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,683,682,446,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,684,Maximum vas score,2070,-1928,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,685,684,195,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,686,121,120,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,687,Maximum vas score,98,-1493,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,688,687,161,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,689,Time of positive shifts memory to fade,1461,-1323,78,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,690,Time of negative shift memory to fade,651,-962,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,691,690,414,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,692,689,419,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,693,81,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,694,526,630,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,695,TIME STEP,2011,-1261,52,10,8,2,0,19,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,696,695,583,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,697,Nurses per interval,2293,-1366,52,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,698,697,583,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,699,Nurses per interval,2477,-1134,57,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,700,699,615,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,701,TIME STEP,2376,-996,52,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,702,701,615,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,703,Weight of satisfaction with ratio in job satisfaction,2616,548,98,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,704,703,267,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,705,21,25,1,0,0,0,0,192,0,-1--1--1,,1|(1391,-307)|
+10,706,Maximum vas score,3588,-1396,53,29,8,2,11,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,707,706,321,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,708,Average patient dependency pulse,-614,-2144,85,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,709,708,497,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,710,Number of patients admitted per week pulse,-639,-1497,83,43,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,711,710,501,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,712,Private life pulse,1324,761,49,29,8,3,11,0,-1,0,0,0,0,0,0,0,0,0
+1,713,712,272,0,11,0,0,0,192,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Objective task demand subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,51,2
+10,1,Direct care time per patient,1246,357,74,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,2,Indirect care time per patient,1561,357,82,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Maximum patient dependency,1447,215,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Patient dependency to direct care time lookup,1020,265,104,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,3,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,6,4,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,7,Objective task demand per shift,1939,764,80,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Patient dependency to indirect care time lookup,1188,38,104,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Initial direct care time per patient,1027,357,78,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,10,9,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,11,Objective task demand to date,1691,581,75,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,12,48,1334,581,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,13,15,12,100,0,0,22,0,192,0,-1--1--1,,1|(1409,581)|
+1,14,15,11,4,0,0,22,0,192,0,-1--1--1,,1|(1551,581)|
+11,15,0,1480,581,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,16,Objective task demand per week,1480,632,84,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,17,Average objective task demand per week,1944,656,81,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,18,Time,1760,703,35,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,19,11,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,20,18,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,21,17,7,1,0,0,0,0,192,0,-1--1--1,,1|(1960,697)|
+10,22,Effect of task efficiency on care time per patient,1483,750,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,Effect of task efficiency on care time per patient lookup,1483,872,104,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,24,Task efficiency from team organisation,1247,761,72,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,25,23,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,26,24,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,27,22,16,1,0,0,0,0,192,0,-1--1--1,,1|(1471,698)|
+10,28,Task performance based on stress level,1220,589,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,29,28,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,30,Communication and training tasks,1806,178,99,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,31,Ratio of direct and indirect care time,1440,433,85,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,32,1,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,33,2,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,34,Patient transport,1665,112,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,35,Effect of patient dependency on indirect care tasks,1480,89,84,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,36,3,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,37,8,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,38,Preparing equipment and managing medication,1852,288,99,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,39,35,2,1,0,0,0,0,192,0,-1--1--1,,1|(1535,235)|
+10,40,Indirect care tasks,1660,260,59,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,41,34,40,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,42,30,40,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,43,38,40,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,44,40,2,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,45,Average patient dependency,1254,178,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,46,Number of patients admitted per week,1222,673,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,47,46,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,48,45,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,49,45,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,50,Care time per patient,1469,510,53,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,51,1,50,1,0,0,0,0,192,0,-1--1--1,,1|(1328,450)|
+1,52,2,50,1,0,0,0,0,192,0,-1--1--1,,1|(1565,430)|
+10,53,Minutes in an hour,1644,483,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,54,53,50,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,55,50,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,56,Maximum vas score,1677,751,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,57,56,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,58,Average patient dependency pulse,965,100,85,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,59,58,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,60,Number of patients admitted per week pulse,940,747,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,61,60,46,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,62,Shifts,1935,846,38,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,63,62,7,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,64,Administrative tasks,1732,379,68,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,65,64,40,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Team subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,82,2
+10,1,Team cohesion,841,427,42,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,584,425,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,5,2,100,0,0,22,0,192,0,-1--1--1,,1|(627,425)|
+1,4,5,1,4,0,0,22,0,192,0,-1--1--1,,1|(735,425)|
+11,5,0,666,425,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,6,Increase in team cohesion,666,462,73,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Trust in other colleagues,891,344,63,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,8,Depersonalization,608,633,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,9,7,1,1,0,0,0,0,192,1,-1--1--1,,1|(884,383)|
+1,10,1,6,1,0,0,0,0,192,0,-1--1--1,,1|(728,455)|
+10,11,Normal rate of team cohesion,533,546,68,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,12,11,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,13,48,1175,427,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,14,16,1,100,0,0,22,0,192,0,-1--1--1,,1|(950,427)|
+1,15,16,13,4,0,0,22,0,192,0,-1--1--1,,1|(1097,427)|
+11,16,0,1024,427,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,17,Decrease in team cohesion,1024,464,68,29,40,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,18,Supportive leadership,671,133,51,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Average experience of nurses,1352,-208,63,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Maximum years of experience of nurses,1283,-291,86,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Nurse resilience,1462,-182,45,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,22,Effect of experience on resilience,1535,-262,66,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,Effect of experience on resilience lookup,1728,-199,78,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,24,19,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,25,20,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,26,23,22,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,27,22,21,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,28,Match between competency and patient dependency,-192,-45,101,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,29,Maximum vas score,-458,-109,48,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,Team psychological safety,409,133,62,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,31,1,30,1,0,0,0,0,192,0,-1--1--1,,1|(519,270)|
+1,32,18,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,33,Decision making autonomy,743,-92,76,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,34,30,33,1,0,0,0,0,192,0,-1--1--1,,1|(529,-3)|
+10,35,Effect of experience on decision making autonomy,1045,-206,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,Effect of experience on decision making autonomy lookup,1041,-331,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,37,19,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,38,20,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,39,36,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,40,35,33,1,0,0,0,0,192,0,-1--1--1,,1|(886,-183)|
+10,41,Job control,339,-32,50,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,42,33,41,1,0,0,0,0,192,0,-1--1--1,,1|(538,-94)|
+10,43,Consultation opportunities with the team,280,53,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,44,Meetings,4,-79,43,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,45,43,41,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,46,30,43,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,47,44,43,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,48,Maximum meeting time per patient,84,75,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,49,48,43,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,50,Task efficiency from team organisation,826,129,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,51,43,50,1,0,0,0,0,192,0,-1--1--1,,1|(555,73)|
+10,52,Team resilience,555,192,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,53,1,52,1,0,0,0,0,192,0,-1--1--1,,1|(723,264)|
+1,54,18,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,55,Communication and training tasks,9,-207,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,56,Training students,218,-269,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,57,44,55,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,58,56,55,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,59,Time for professional development,-78,-335,62,43,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,60,59,55,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,61,Effect of professional development on time lookup,-143,-494,99,43,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,62,61,59,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,63,Success of interventions,1267,103,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,64,Success of intervention determined by competency,1093,178,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,65,64,63,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,66,Training and development,873,-17,62,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,67,Maximum patient dependency,-102,-140,88,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,68,67,28,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,69,Maximum vas score,913,551,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,70,Effect of supportive leadership on training and development lookup,662,-12,95,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,71,Weight of team cohesion in team resilience,621,284,79,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,72,71,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,73,Weight of skill mix and competency in decision making autonomy,800,-232,108,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,74,73,33,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,75,Weight of skill mix and competency in job control,418,-222,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,76,Weight of decision making autonomy in job control,253,-145,84,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,77,76,41,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,78,75,41,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,79,Weight of consultation opportunities in job control,176,-62,85,33,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,80,79,41,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,81,Weight of team cohesion in team psychological safety,239,169,91,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,82,81,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,83,Weight of skill mix and competency in task efficiency,849,240,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,84,83,50,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,85,Average patient dependency,-392,-173,79,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,86,85,28,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,87,Ability to destress,1583,-129,47,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,88,87,21,1,0,0,0,0,192,0,-1--1--1,,1|(1519,-162)|
+10,89,Skill mix and competency of nursing team,1337,-16,88,43,3,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,90,Education level of nurses,1282,-135,70,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,91,90,89,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+12,92,48,1059,-26,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,93,95,92,100,0,0,22,0,192,0,-1--1--1,,1|(1098,-26)|
+1,94,95,89,4,0,0,22,0,192,0,-1--1--1,,1|(1194,-26)|
+11,95,0,1133,-26,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,96,Professional development,1133,11,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,97,Time before training is completed,954,43,56,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,98,Training and development,139,-359,67,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,99,98,59,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,100,66,96,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,101,97,96,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,102,89,33,1,0,0,0,0,192,0,-1--1--1,,1|(1151,-129)|
+1,103,89,41,1,0,0,0,0,192,0,-1--1--1,,1|(935,83)|
+1,104,89,21,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,105,89,63,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,106,89,50,1,0,0,0,0,192,0,-1--1--1,,1|(945,129)|
+10,107,Skill mix and competency of nursing team,-257,49,68,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,108,107,28,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,109,89,96,1,0,0,0,0,192,0,-1--1--1,,1|(1211,-54)|
+10,110,Maximum vas score,1088,-94,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,111,110,96,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,112,18,66,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,113,70,66,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,114,Maximum vas score,968,-112,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,115,114,66,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,116,48,1687,-16,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,117,119,89,100,0,0,22,0,192,0,-1--1--1,,1|(1485,-16)|
+1,118,119,116,4,0,0,22,0,192,0,-1--1--1,,1|(1617,-16)|
+11,119,0,1551,-16,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,120,Decrease of competency,1551,21,80,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,121,Competency lost by nurses leaving,1472,106,80,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,122,121,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,123,Nurses leaving the profession,1633,103,73,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,124,123,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,125,Long term absenteeism flow,1770,53,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,126,125,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,127,Effect of depersonalization on increase of team cohesion lookup,836,650,122,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,128,Effect of depersonalization on increase of team cohesion,733,547,99,37,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,129,69,128,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,130,127,128,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,131,8,128,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,132,128,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,133,69,6,1,0,0,0,0,192,0,-1--1--1,,1|(833,507)|
+10,134,Loss of team cohesion from nurses leaving,1084,328,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,135,134,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,136,Long term absenteeism flow,1286,448,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,137,Nurses leaving the profession,1203,529,73,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,138,137,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,139,136,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,140,Maximum vas score,-229,-344,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,141,140,59,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,142,29,28,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,143,1,17,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,144,89,120,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,145,Maximum vas score,1289,188,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,146,145,63,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Shift subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,51,2
+10,1,Effect of total amount distress on positivity of shifts lookup,2095,682,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Shifts,1270,23,42,22,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,4,2,4,0,0,22,0,192,0,-1--1--1,,1|(1154,23)|
+11,4,0,1075,23,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,5,Added shifts per week,1075,60,58,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,6,Agreed upon shifts per nurse,1618,-134,73,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+10,7,Percentage of scheduled shifts that are positive,1849,564,75,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Percentage of extra shifts that are positive,1865,308,73,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Perceived positive shifts,1641,25,63,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,10,Perceived negative shifts,1271,256,67,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,11,13,2,100,0,0,22,0,192,0,-1--1--1,,1|(1365,26)|
+1,12,13,9,4,0,0,22,0,192,0,-1--1--1,,1|(1504,26)|
+11,13,0,1425,26,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,14,Perceived positive shifts completed per week,1425,77,83,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,17,2,100,0,0,22,0,192,0,-1--1--1,,1|(1268,87)|
+1,16,17,10,4,0,0,22,0,192,0,-1--1--1,,1|(1268,184)|
+11,17,0,1268,135,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,18,Perceived negative shifts completed per week,1362,135,86,43,40,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,19,Scheduled shifts completed per week,1507,264,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Shift balance,2048,434,60,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Extra shifts open per week,1473,-132,69,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,22,6,21,1,0,0,0,0,192,0,-1--1--1,,1|(1553,-110)|
+1,23,8,18,1,0,0,0,0,192,0,-1--1--1,,1|(1455,322)|
+10,24,Agreed upon shifts per nurse,843,169,78,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,25,24,5,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,26,Maximum vas score,2122,-311,48,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,27,Match between competency and patient dependency,1754,804,99,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,28,Effect of match on positivity of shifts lookup,1649,710,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,29,Nurses' willingness to be flexible,1659,-345,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,Extra shifts completed per week,1769,-61,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,31,29,30,1,0,0,0,0,192,0,-1--1--1,,1|(1745,-221)|
+1,32,21,30,1,0,0,0,0,192,0,-1--1--1,,1|(1605,-82)|
+10,33,Satisfaction with scheduling,1649,631,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,34,33,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,35,Emotional demand during shifts,1867,691,88,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,36,1,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,37,28,35,1,0,0,0,0,192,0,-1--1--1,,1|(1748,676)|
+1,38,27,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,39,35,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,40,Effect of being understaffed during shifts,1566,534,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,41,Effect of being understaffed during shifts lookup,1427,631,93,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,42,40,7,1,0,0,0,0,192,0,-1--1--1,,1|(1687,571)|
+10,43,Nurses initially scheduled,868,70,49,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,44,43,5,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,45,Initial value of shifts,924,-53,54,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,24,45,1,0,0,0,0,192,0,-1--1--1,,1|(807,47)|
+1,47,43,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,48,45,2,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+10,49,"1 week",1037,-124,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,50,49,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,51,Objective task demand per shift,2049,621,86,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,52,Effect of task demand on positivity of shift,2046,537,75,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,53,Effect of task demand on positivity of shift lookup,2263,620,100,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,54,Threshold for busy shift,2280,540,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,55,51,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,56,53,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,57,54,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,58,52,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,59,Perception of extra shifts,2019,220,104,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,60,59,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,61,48,1271,393,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,62,64,10,100,0,0,22,0,192,0,-1--1--1,,1|(1271,305)|
+1,63,64,61,4,0,0,22,0,192,0,-1--1--1,,1|(1271,361)|
+11,64,0,1271,331,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,65,Fading negative shift memory,1352,331,73,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,66,48,1889,25,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,67,69,9,100,0,0,22,0,192,0,-1--1--1,,1|(1745,25)|
+1,68,69,66,4,0,0,22,0,192,0,-1--1--1,,1|(1838,25)|
+11,69,0,1792,25,6,6,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,70,Fading positive shift memory,1792,62,69,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,71,14,70,1,0,0,0,0,192,0,-1--1--1,,1|(1615,-28)|
+1,72,18,65,1,0,0,0,0,192,0,-1--1--1,,1|(1350,259)|
+10,73,Perceived negative shifts,2253,429,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,74,Perceived positive shifts,2056,322,69,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,75,74,20,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,76,73,20,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,77,Vacant shifts,1269,-185,63,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,78,80,2,100,0,0,22,0,192,0,-1--1--1,,1|(1269,-31)|
+1,79,80,77,4,0,0,22,0,192,0,-1--1--1,,1|(1269,-116)|
+11,80,0,1269,-70,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,81,Vacant shifts per week,1347,-70,70,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,82,48,1269,-315,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,83,85,77,100,0,0,22,0,192,0,-1--1--1,,1|(1269,-227)|
+1,84,85,82,4,0,0,22,0,192,0,-1--1--1,,1|(1269,-280)|
+11,85,0,1269,-247,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,86,Vacant shift dissipation,1332,-247,55,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,87,81,86,1,0,0,0,0,192,0,-1--1--1,,1|(1345,-180)|
+1,88,30,81,1,0,0,0,0,192,0,-1--1--1,,1|(1610,-51)|
+1,89,21,81,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,90,Vacant shifts,1380,511,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,91,41,40,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,92,90,40,1,0,0,0,0,192,0,-1--1--1,,1|(1457,531)|
+10,93,Team cohesion,1444,-423,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,94,Work life balance,2126,-145,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,95,Effect of work life balance on willingness to be flexible lookup,2138,-233,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,96,Effect of team cohesion on willingness to be flexible lookup,1658,-518,121,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,97,Effect of team cohesion on willingness to be flexible,1658,-423,121,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,98,Effect of work life balance on willingsness to be flexible,1888,-275,117,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,99,93,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,100,96,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,101,26,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,102,95,98,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,103,94,98,1,0,0,0,0,192,0,-1--1--1,,1|(1982,-180)|
+1,104,98,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,105,97,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,106,Initial willingness to be flexible,1457,-355,79,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,107,106,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,108,Agreed upon shifts per nurse,1614,347,78,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,109,108,19,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,110,Emotional demand during shifts,1862,428,72,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,111,110,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,112,Number of nurses available,1619,-225,76,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,113,Nurses initially scheduled,1469,-225,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,114,113,21,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,115,112,21,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,116,112,30,1,0,0,0,0,192,0,-1--1--1,,1|(1691,-162)|
+10,117,Number of nurses available,1714,304,76,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,118,117,19,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,119,8,14,1,0,0,0,0,192,0,-1--1--1,,1|(1765,150)|
+10,120,Shifts,1560,445,38,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,121,120,40,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,122,"1 week",1349,-315,45,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,123,122,86,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,124,Extra shifts completed per week,1665,138,68,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,125,19,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,126,124,14,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,127,124,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,128,19,14,1,0,0,0,0,192,0,-1--1--1,,1|(1499,160)|
+10,129,Percentage of scheduled shifts that are positive,1654,219,81,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,130,129,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,131,129,14,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,132,Maximum vas score,1867,-415,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,133,132,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,134,Time of positive shifts memory to fade,2029,61,78,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,135,Time of negative shift memory to fade,1409,412,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,136,135,65,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,137,134,70,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,138,Maximum level of distress,1914,801,59,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,139,138,35,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,140,Total amount of distress,2017,766,61,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,141,140,35,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Stress subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,56,2
+10,1,Emotional distress,1247,-105,48,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,970,-103,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,5,2,100,0,0,22,0,192,0,-1--1--1,,1|(1027,-103)|
+1,4,5,1,4,0,0,22,0,192,0,-1--1--1,,1|(1143,-103)|
+11,5,0,1081,-103,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,6,Increase of emotional distress,1081,-66,85,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Effect of shift balance on emotional distress,644,-217,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Total amount of distress,1758,-335,73,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,9,Eustress,2016,-435,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,10,1,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,11,Psychosomatic complaints,2172,215,68,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,12,48,1906,217,10,6,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,13,15,12,100,0,0,22,0,192,0,-1--1--1,,1|(1945,217)|
+1,14,15,11,4,0,0,22,0,192,0,-1--1--1,,1|(2045,217)|
+11,15,0,1981,217,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,16,Increase of psychosomatic complaints,1981,268,69,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,17,Time that stress turns into physical complaints,2141,381,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,18,17,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,19,Depersonalization,1234,82,73,30,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,20,22,1,100,0,0,22,0,192,0,-1--1--1,,1|(1258,-52)|
+1,21,22,19,4,0,0,22,0,192,0,-1--1--1,,1|(1258,18)|
+11,22,0,1258,-22,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,23,Coping through depersonalization,1349,-22,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,24,1,23,1,0,0,0,0,192,0,-1--1--1,,1|(1289,-39)|
+10,25,Moral distress,2660,-108,42,29,3,3,0,0,-1,1,0,0,0,0,0,0,0,0
+12,26,48,2430,-106,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,27,29,26,100,0,0,22,0,192,0,-1--1--1,,1|(2481,-106)|
+1,28,29,25,4,0,0,22,0,192,0,-1--1--1,,1|(2576,-106)|
+11,29,0,2529,-106,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,30,Increase of moral distress,2529,-69,66,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,31,48,861,91,10,6,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,32,34,31,100,0,0,22,0,192,0,-1--1--1,,1|(861,83)|
+1,33,34,19,4,0,0,22,0,192,0,-1--1--1,,1|(1090,83)|
+11,34,0,1013,83,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,35,Increase of depersonalization,1013,120,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,Moral distress,565,415,43,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,37,Time that moral distress leads to depersonalization,735,420,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,38,25,8,1,0,0,0,0,192,0,-1--1--1,,1|(2267,-282)|
+1,39,25,30,1,0,0,0,0,192,0,-1--1--1,,1|(2603,-81)|
+1,40,1,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,41,48,1526,-105,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,42,44,1,100,0,0,22,0,192,0,-1--1--1,,1|(1361,-105)|
+1,43,44,41,4,0,0,22,0,192,0,-1--1--1,,1|(1478,-105)|
+11,44,0,1434,-105,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,45,Decrease of emotional distress,1434,-68,85,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,1,45,1,0,0,0,0,192,0,-1--1--1,,1|(1365,-118)|
+12,47,48,3006,-108,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,48,50,25,100,0,0,22,0,192,0,-1--1--1,,1|(2772,-108)|
+1,49,50,47,4,0,0,22,0,192,0,-1--1--1,,1|(2925,-108)|
+11,50,0,2849,-108,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,51,Decrease of moral distress,2849,-71,66,29,40,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+1,52,25,51,1,0,0,0,0,192,0,-1--1--1,,1|(2777,-108)|
+10,53,Normal increase of depersonalization rate,1072,215,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,54,Maximum level of distress,1266,-238,71,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,55,Nurse resilience,2239,-337,51,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,56,Team resilience,2093,-579,51,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,57,56,9,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,58,55,9,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,59,9,8,1,0,0,0,0,192,0,-1--1--1,,1|(1891,-395)|
+10,60,Task performance based on stress level,1823,-447,77,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,61,Effect of total amount of distress on task performance lookup,1898,-568,99,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,62,61,60,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,63,48,2500,215,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,64,66,11,100,0,0,22,0,192,0,-1--1--1,,1|(2299,215)|
+1,65,66,63,4,0,0,22,0,192,0,-1--1--1,,1|(2430,215)|
+11,66,0,2365,215,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,67,Decrease of psychosomatic complaints,2365,266,69,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,68,Ability to physically rest in between shifts,2491,384,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,69,68,67,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,70,Affirmation for decisions from team,3090,-308,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,71,Supportive leadership,3114,-428,56,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,72,Consultation opportunities with the team,3337,-329,85,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,73,72,70,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,74,71,70,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,75,Normal increase of moral distress,2411,6,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,76,75,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,77,Coping with emotional distress through depersonalization,1494,91,124,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,78,77,23,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,79,Maximum level of distress,2665,-210,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,80,79,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,81,Effect of affirmation on moral distress lookup,2796,-359,66,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,82,Maximum vas score,3192,-195,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,83,Effect of affirmation on moral distress,2928,-225,66,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,84,81,83,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,85,82,83,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,86,70,83,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,87,83,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,88,Ability to deliver safe care,2904,165,75,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,89,Ratio of direct and indirect care time,2728,656,79,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,90,Effect of task demand per shift on ability to deliver safe care lookup,3019,492,118,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,91,Job control,2698,235,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,92,91,88,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,93,Match between competency and patient dependency,3251,139,99,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,94,93,88,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,95,Effect of match on ability to deliver safe care,3262,259,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,96,95,88,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,97,Effect of ability to deliver safe care on moral distress,2605,64,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,98,Effect of ability to deliver safe care on moral distress lookup,2877,66,99,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,99,Maximum vas score,2580,166,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,100,88,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,101,99,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,102,98,97,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,103,97,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,104,54,45,1,0,0,0,0,64,0,-1--1--1,,1|(1382,-180)|
+10,105,Normal increase of emotional distress,944,11,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,106,Initial emotional distress level,1265,-177,57,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,107,106,1,0,0,0,0,0,64,1,-1--1--1,,1|(0,0)|
+1,108,54,6,1,0,0,0,0,64,0,-1--1--1,,1|(1132,-169)|
+10,109,Workplace positivity,1275,601,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,110,Positive interpersonal interactions,836,572,63,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,111,Team cohesion,644,506,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,112,Ability to deliver safe care,1028,700,80,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,113,Interactions with colleagues outside of nursing team,526,687,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,114,111,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,115,113,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,116,110,109,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,117,112,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,118,112,109,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,119,Effect of workplace positivity on depersonalization,1039,339,87,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,120,Effect of workplace positivity on depersonalization lookup,1030,506,116,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,121,Maximum vas score,892,445,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,122,121,119,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,123,109,119,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,124,120,119,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,125,119,35,1,0,0,0,0,192,0,-1--1--1,,1|(954,237)|
+10,126,Job satisfaction,2505,737,53,29,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+1,127,109,126,1,0,0,0,0,192,0,-1--1--1,,1|(1888,829)|
+1,128,91,126,1,0,0,0,0,192,0,-1--1--1,,1|(2709,423)|
+10,129,Career expectation fulfillment,1806,523,65,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,130,Intention to stay in the profession,1959,622,87,29,8,3,0,24,-1,0,0,0,0-0-0,0-0-0,|16|B|0-0-0,0,0,0,0,0,0
+1,131,126,130,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,132,129,130,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,133,105,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,134,Team cohesion,1782,-108,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,135,Effect of team cohesion on emotional distress,1836,35,121,43,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,136,Effect of team cohesion on capacity to destress emotionally lookup,1953,-128,121,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,137,134,135,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,138,136,135,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,139,Maximum vas score,2020,-60,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,140,139,135,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,141,Effect of job control on emotional distress,1594,-162,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,142,Effect of long term absenteeism on emotional distress,740,-8,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,143,Job control,1780,-158,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,144,Maximum vas score,1655,-256,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,145,Effect of job control on emotional distress lookup,1823,-214,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,146,Effect of long term absenteeism on emotional distress lookup,378,-11,122,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,147,143,141,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,148,144,141,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,149,145,141,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,150,146,142,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,151,Total effect on emotional distress,935,-196,85,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,152,7,151,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,153,142,151,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,154,151,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,155,Success of interventions,2270,-419,67,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,156,155,9,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,157,53,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,158,19,35,1,0,0,0,0,192,0,-1--1--1,,1|(1063,59)|
+10,159,Maximum level of distress,760,168,87,29,8,2,0,3,-1,1,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,160,Effect of moral distress on depersonalization,734,287,88,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,161,36,160,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,162,37,160,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,163,159,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,164,Effect of moral distress on depersonalization lookup,438,297,105,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,165,164,160,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,166,159,160,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,167,160,35,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,168,141,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+12,169,48,1234,281,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,170,172,19,100,0,0,22,0,192,0,-1--1--1,,1|(1234,149)|
+1,171,172,169,4,0,0,22,0,192,0,-1--1--1,,1|(1234,235)|
+11,172,0,1234,192,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,173,Decrease of depersonalization,1325,192,83,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,174,19,173,1,0,0,0,0,192,0,-1--1--1,,1|(1330,143)|
+10,175,Maximum level of distress,1574,200,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,176,175,173,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,177,Weight of eustress in total amount of distress,2008,-374,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,178,177,8,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,179,79,51,1,0,0,0,0,192,0,-1--1--1,,1|(2779,-163)|
+10,180,Weight of success of interventions in eustress,2244,-483,88,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,181,180,9,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,182,Weight of career in intention to stay,2014,543,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,183,Weight of job satisfaction in intention to stay,2046,732,76,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,184,Weight of work life balance in intention to stay,1759,723,86,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,185,184,130,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,186,183,130,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,187,182,130,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,188,Weight of workplace positivity in job satisfaction,2281,743,93,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,189,Weight of psychosomatic complaints in job satisfaction,2324,872,82,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,190,Weight of job control in job satisfaction,2337,637,61,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,191,188,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,192,190,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,193,189,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,194,Weight of ability to deliver safe care in workplace adversity,1264,718,92,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,195,194,109,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,196,Weight of team cohesion in positive interactions,580,586,94,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,197,196,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,198,Weight of ability to deliver safe care positive interactions,874,769,96,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,199,Weight of interactions outside team in positive interactions,687,743,101,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,200,199,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,201,198,110,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,202,Weight of supportive leadership in affirmation for decisions,3321,-445,114,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,203,202,70,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,204,11,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,205,Maximum level of distress,1940,382,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,206,205,16,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,207,135,45,1,0,0,0,0,192,0,-1--1--1,,1|(1642,-65)|
+10,208,Normal decrease of depersonalization,1437,290,83,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,209,208,173,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,210,Threshold for busy shift,3196,372,68,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,211,Objective task demand per shift,2811,437,86,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,212,Effect of task demand per shift on ability to deliver safe care,3003,341,100,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,213,211,212,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,214,90,212,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,215,210,212,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,216,212,88,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,217,Satisfaction with ratio of direct and indirect care time,2702,796,102,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,218,217,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,219,89,217,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,220,Preferred ratio of direct and indirect care time,2911,910,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,221,220,217,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,222,Effect of ratio of direct and indirect care time on job satisfaction lookup,3042,731,121,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,223,222,217,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,224,11,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,225,Psychosomatic complaints,1501,23,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,226,Psychosomatic complaints,2961,1,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,227,225,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,228,226,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,229,Maximum level of distress,1637,-381,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,230,8,60,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,231,229,60,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,232,Nurses initially scheduled,624,97,54,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,233,232,142,1,0,0,0,0,192,0,-1--1--1,,1|(697,64)|
+10,234,Time for psychosomatic complaints to have effect on stress,1601,-24,115,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,235,234,45,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,236,Time for psychosomatic complaints to have effect on stress,3110,-56,120,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,237,236,51,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,238,11,68,1,0,0,0,0,192,0,-1--1--1,,1|(2306,320)|
+10,239,Percentage that resting reduces psychosomatic complaints,2511,499,118,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,240,239,68,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,241,Long Term Absenteeism,482,89,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,242,241,142,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,243,8,16,1,0,0,0,0,192,0,-1--1--1,,1|(2093,-114)|
+10,244,Weight of satisfaction with ratio in job satisfaction,2549,876,98,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,245,244,126,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,246,19,23,1,0,0,0,0,192,0,-1--1--1,,1|(1324,21)|
+10,247,Work life balance,1924,717,37,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,248,247,130,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,249,Shift balance,932,-269,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,250,249,151,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Destress subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,62,2
+10,1,Work life balance,812,-91,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Quality of private life,602,-41,49,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Initial ability to destress,1056,174,57,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,4,2,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,5,Short term absenteeism,1505,463,66,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,6,Emotional distress,485,-240,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,7,Effect of emotional distress on private life,692,-171,86,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Effect of emotional distress on private life lookup,428,-132,86,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Maximum level of distress,688,-283,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,10,6,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,11,9,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,12,8,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,13,7,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,14,Effect of work life balance on ability to destress,992,31,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,15,Effect of work life balance on ability to destress lookup,1169,-89,103,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,16,Maximum vas score,1173,122,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,17,15,14,1,0,0,0,0,192,0,-1--1--1,,1|(1088,-23)|
+1,18,16,14,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,19,1,14,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,20,Effect of short term absenteeism on ability to destress,1514,319,104,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Effect of short term absenteeism on ability to destress lookup,1887,321,125,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,22,5,20,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,21,20,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,24,Ability to destress,1081,260,66,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,25,48,802,261,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,26,28,25,100,0,0,22,0,192,0,-1--1--1,,1|(859,261)|
+1,27,28,24,4,0,0,22,0,192,0,-1--1--1,,1|(967,261)|
+11,28,0,913,261,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,29,Increase in ability to destress,913,298,87,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,30,14,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,31,3,24,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+1,32,24,29,1,0,0,0,0,192,0,-1--1--1,,1|(1052,307)|
+12,33,48,1425,260,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,34,36,24,100,0,0,22,0,192,0,-1--1--1,,1|(1211,260)|
+1,35,36,33,4,0,0,22,0,192,0,-1--1--1,,1|(1351,260)|
+11,36,0,1281,260,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,37,Decrease in ability to destress,1281,311,55,43,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,38,20,37,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,39,Normal ability to destress,1090,405,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,40,39,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,41,39,37,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,42,24,37,1,0,0,0,0,192,0,-1--1--1,,1|(1145,313)|
+10,43,Maximum level of distress,1090,476,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,44,Effect of psychosomatic complaints on ability to destress,1308,407,102,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,45,Effect of psychosomatic complaints on ability to destress lookup,1506,577,107,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,46,43,44,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,47,45,44,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,48,44,37,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,49,Psychosomatic complaints,1268,525,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,50,49,44,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,51,Nurses initially scheduled,1651,427,54,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,52,51,20,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,53,Private life pulse,418,2,49,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,54,53,2,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Nurses subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,75,2
+10,1,Short term absenteeism,557,415,60,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Maximum vas score,1176,638,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,Psychosomatic complaints,719,136,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,Intention to stay in the profession,794,566,83,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Number of nurses available,864,314,70,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,6,Long term absenteeism pulse,897,251,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Effect of psychosomatic complaints on interval of absenteeism,516,228,113,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Maximum vas score,523,147,53,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,9,Nurses initially scheduled,748,491,74,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,Initial number of nurses available,755,411,77,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,11,1,10,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,12,9,10,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,13,10,5,0,0,0,0,0,192,1,-1--1--1,,1|(0,0)|
+12,14,48,864,498,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,17,5,100,0,0,22,0,192,0,-1--1--1,,1|(864,375)|
+1,16,17,14,4,0,0,22,0,192,0,-1--1--1,,1|(864,455)|
+11,17,0,864,413,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,18,Nurses leaving the profession,940,413,68,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,INITIAL TIME,1103,215,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,20,FINAL TIME,1101,266,33,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,21,19,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,22,20,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,23,Interval of nurses absent long term,731,232,80,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,|||0-0-0,0,0,0,0,0,0
+1,24,3,23,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,25,7,23,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,26,8,23,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,27,23,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,28,3,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,29,Interval of nurses leaving the profession,994,600,80,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,Effect of intention to stay on nurses leaving the profession lookup,1218,560,102,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,31,Nurses leaving pulse,1003,490,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,32,INITIAL TIME,1149,508,38,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,33,FINAL TIME,1074,399,33,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,34,33,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,35,32,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,36,30,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,37,2,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,38,4,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,39,29,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,40,31,18,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,41,4,29,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,42,Long Term Absenteeism,1239,313,61,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,43,45,5,100,0,0,22,0,192,0,-1--1--1,,1|(991,310)|
+1,44,45,42,4,0,0,22,0,192,0,-1--1--1,,1|(1119,310)|
+11,45,0,1054,310,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,46,Long term absenteeism flow,1054,347,81,29,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,47,6,46,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,48,Psychosomatic complaints to long term absenteeism threshold,900,123,120,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,49,48,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,50,Intention to actually leaving threshold,1278,471,71,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,51,50,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,52,TIME STEP,703,284,52,10,8,2,0,19,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,53,52,6,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,54,Nurses per interval,985,179,52,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,55,54,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,56,Nurses per interval,1169,411,57,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,57,56,31,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,58,TIME STEP,1068,549,52,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,59,58,31,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+///---\\\
+:L<%^E!@
+4:Time
+5:"1 week"
+9:Private life pulse
+19:48,0
+24:0
+25:104
+26:104
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours,Hr,Hrs,hours,hour
+22:Month,Months,mnths,mnth
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks,wk,wks,weeks,week
+22:Year,Years,Yr,Yrs
+22:dmnl,dimensionless,1,fraction
+22:Second,Seconds,secs,sec
+22:Minute,Minutes,min,mins
+22:watt,watts
+22:product,products
+22:article,articles
+22:document,documents
+22:comment,comments
+22:nurses,nurse,Nurse,Nurses
+22:patient,patients,Patient,Patients
+22:shift,shifts,Shift,Shifts
+23:0
+18:Average patient dependency.vsc
+20:Parameters sensitivity analysis.lst
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Vensim Sans|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1

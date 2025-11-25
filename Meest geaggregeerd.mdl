@@ -1,0 +1,299 @@
+{UTF-8}
+Intention to stay in the profession  = A FUNCTION OF( Competent and supportive team,Work life balance\
+		)
+	~	
+	~		|
+
+Emotional distress  = A FUNCTION OF( Competent and supportive team,Moral distress,Shift balance\
+		)
+	~	
+	~		|
+
+Number of nurses available  = A FUNCTION OF( Intention to stay in the profession,Long term absenteeism\
+		,Short term absenteeism)
+	~	
+	~		|
+
+Competent and supportive team  = A FUNCTION OF( Intention to stay in the profession,Long term absenteeism\
+		)
+	~	
+	~		|
+
+Eustress  = A FUNCTION OF( Competent and supportive team)
+	~	
+	~		|
+
+Long term absenteeism  = A FUNCTION OF( Emotional distress,Moral distress)
+	~	
+	~		|
+
+Objective task demand  = A FUNCTION OF( Competent and supportive team,Number of nurses available\
+		,Patient dependency,Patients admitted)
+	~	
+	~		|
+
+Short term absenteeism  = A FUNCTION OF( )
+	~	
+	~		|
+
+Shift balance  = A FUNCTION OF( Emotional distress,Eustress,Moral distress,Subjective task demand\
+		)
+	~	
+	~		|
+
+Patient dependency  = A FUNCTION OF( )
+	~	
+	~		|
+
+Work life balance  = A FUNCTION OF( Emotional distress)
+	~	
+	~		|
+
+Subjective task demand  = A FUNCTION OF( Objective task demand,Shift balance)
+	~	
+	~		|
+
+Aantal aanwezige verpleegkundigen  = A FUNCTION OF( Intentie om in het beroep te blijven\
+		,Kortdurig ziekteverzuim,Langduring ziekteverzuim)
+	~	
+	~		|
+
+Emotionele stress  = A FUNCTION OF( Competent en ondersteunend verpleegkundig team,Morele stress\
+		)
+	~	
+	~		|
+
+Balans van positieve en negatieve diensten  = A FUNCTION OF( Emotionele stress,Ervaren werklast\
+		,Morele stress,"Positieve stress (eustress)")
+	~	
+	~		|
+
+Kortdurig ziekteverzuim  = A FUNCTION OF( )
+	~	
+	~		|
+
+Competent en ondersteunend verpleegkundig team  = A FUNCTION OF( Emotionele stress,Langduring ziekteverzuim\
+		)
+	~	
+	~		|
+
+Werk privé balans  = A FUNCTION OF( Emotionele stress)
+	~	
+	~		|
+
+Langduring ziekteverzuim  = A FUNCTION OF( Emotionele stress,Morele stress)
+	~	
+	~		|
+
+"Positieve stress (eustress)"  = A FUNCTION OF( Competent en ondersteunend verpleegkundig team\
+		,Succes van interventie)
+	~	
+	~		|
+
+Intentie om in het beroep te blijven  = A FUNCTION OF( Balans van positieve en negatieve diensten\
+		,Werk privé balans)
+	~	
+	~		|
+
+Objectieve aantal uit te voeren zorgtaken  = A FUNCTION OF( Aantal aanwezige verpleegkundigen\
+		,Aantal patienten presentaties per week,Competent en ondersteunend verpleegkundig team\
+		,Zorgafhankelijkheid van patienten)
+	~	
+	~		|
+
+Zorgafhankelijkheid van patienten  = A FUNCTION OF( )
+	~	
+	~		|
+
+Succes van interventie  = A FUNCTION OF( Competent en ondersteunend verpleegkundig team\
+		)
+	~	
+	~		|
+
+Aantal patienten presentaties per week  = A FUNCTION OF( )
+	~	
+	~		|
+
+Ervaren werklast  = A FUNCTION OF( Objectieve aantal uit te voeren zorgtaken,Balans van positieve en negatieve diensten\
+		)
+	~	
+	~		|
+
+Moral distress  = A FUNCTION OF( Competent and supportive team)
+	~	
+	~		|
+
+Morele stress  = A FUNCTION OF( Competent en ondersteunend verpleegkundig team)
+	~	
+	~		|
+
+Patients admitted  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,Objective task demand,532,194,59,19,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Subjective task demand,671,235,62,19,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Number of nurses available,538,272,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Competent and supportive team,866,159,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,3,1,1,0,45,0,0,192,0,-1--1--1,,1|(518,233)|
+1,6,1,2,1,0,43,0,0,192,0,-1--1--1,,1|(593,186)|
+1,7,4,1,1,0,45,0,0,192,0,-1--1--1,,1|(702,151)|
+10,8,Intention to stay in the profession,1111,337,72,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+12,9,0,118,476,21,21,5,7,0,0,-1,1,0,0,0,0,0,0,0,0
+B|<<NnN>>|
+12,10,0,122,630,23,23,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R1
+12,11,0,120,550,23,23,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R3|<<NnN>>|
+12,12,0,201,627,23,23,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R4
+12,13,0,117,701,23,23,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R5
+12,14,0,140,323,15,15,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R4|<<NnN>>|
+12,15,0,189,701,23,23,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R6
+10,16,Patients admitted,388,190,42,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,17,16,1,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,18,Emotional distress,671,385,44,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Moral distress,948,385,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Eustress,839,234,36,14,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,21,19,18,1,0,43,0,0,192,0,-1--1--1,,1|(809,430)|
+1,22,4,20,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,4,19,1,0,45,0,0,192,0,-1--1--1,,1|(967,261)|
+10,24,Patient dependency,391,121,55,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,25,24,1,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,26,Short term absenteeism,386,263,50,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,27,8,3,1,0,43,0,0,192,0,-1--1--1,,1|(826,505)|
+1,28,26,3,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,29,Work life balance,948,449,42,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,30,18,29,1,0,45,0,0,192,0,-1--1--1,,1|(793,469)|
+1,31,29,8,1,0,43,0,0,192,0,-1--1--1,,1|(1028,399)|
+10,32,Long term absenteeism,796,385,57,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,33,18,32,1,0,43,0,0,192,0,-1--1--1,,1|(724,388)|
+1,34,19,32,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,35,32,3,1,0,45,0,0,64,0,-1--1--1,,1|(701,299)|
+10,36,Shift balance,796,303,50,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,37,18,36,1,0,45,0,0,192,0,-1--1--1,,1|(755,352)|
+1,38,19,36,1,0,45,0,0,192,0,-1--1--1,,1|(878,336)|
+1,39,2,36,1,0,45,0,0,192,0,-1--1--1,,1|(703,267)|
+1,40,36,2,1,0,45,0,0,192,0,-1--1--1,,1|(778,258)|
+1,41,20,36,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,42,32,4,1,0,45,0,0,192,0,-1--1--1,,1|(891,269)|
+1,43,8,4,1,0,43,0,0,192,0,-1--1--1,,1|(1035,243)|
+1,44,4,18,1,0,45,0,0,192,0,-1--1--1,,1|(685,347)|
+1,45,4,8,1,0,43,0,0,192,0,-1--1--1,,1|(1048,183)|
+1,46,36,18,1,0,45,0,0,192,0,-1--1--1,,1|(739,328)|
+12,47,0,26,358,15,15,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R9
+12,48,0,186,371,15,15,4,7,0,0,-1,1,0,0,0,0,0,0,0,0
+R5|<<NnN>>|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,90,2
+10,1,Objectieve aantal uit te voeren zorgtaken,551,169,87,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Ervaren werklast,718,347,56,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Aantal aanwezige verpleegkundigen,500,282,77,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Competent en ondersteunend verpleegkundig team,914,133,90,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,3,1,1,0,45,0,0,192,0,-1--1--1,,1|(509,223)|
+1,6,1,2,1,0,43,0,0,192,0,-1--1--1,,1|(639,224)|
+1,7,4,1,1,0,45,0,0,192,0,-1--1--1,,1|(715,113)|
+10,8,Intentie om in het beroep te blijven,1205,395,74,19,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,9,Aantal patienten presentaties per week,268,167,71,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,10,9,1,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,11,Emotionele stress,724,490,50,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,12,Morele stress,978,487,40,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,13,"Positieve stress (eustress)",946,299,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,14,Balans van positieve en negatieve diensten,827,396,83,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,12,11,1,0,43,0,0,192,0,-1--1--1,,1|(851,492)|
+1,16,11,14,1,0,45,0,0,192,0,-1--1--1,,1|(777,447)|
+1,17,12,14,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,18,14,2,1,0,45,0,0,192,0,-1--1--1,,1|(757,407)|
+1,19,2,14,1,0,45,0,0,192,0,-1--1--1,,1|(795,355)|
+1,20,13,14,1,0,43,0,0,192,0,-1--1--1,,1|(887,370)|
+1,21,4,13,1,0,43,0,0,192,0,-1--1--1,,1|(973,209)|
+1,22,14,8,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,4,12,1,0,45,0,0,192,0,-1--1--1,,1|(1081,208)|
+1,24,4,11,1,0,45,0,0,192,0,-1--1--1,,1|(658,292)|
+10,25,Succes van interventie,1036,231,51,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,26,4,25,1,0,43,0,0,192,0,-1--1--1,,1|(1004,160)|
+1,27,25,13,1,0,43,0,0,192,0,-1--1--1,,1|(998,274)|
+10,28,Kortdurig ziekteverzuim,333,282,59,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,29,Langduring ziekteverzuim,500,366,59,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,30,11,29,1,0,43,0,0,192,0,-1--1--1,,1|(606,433)|
+1,31,12,29,1,0,43,0,0,192,0,-1--1--1,,1|(584,486)|
+1,32,28,3,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,33,29,3,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,34,Werk privé balans,1142,487,48,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,35,11,34,1,0,45,0,0,192,0,-1--1--1,,1|(927,552)|
+1,36,34,8,1,0,43,0,0,192,0,-1--1--1,,1|(1192,447)|
+10,37,Intentie om in het beroep te blijven,335,369,64,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,38,37,3,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,39,Zorgafhankelijkheid van patienten,438,85,71,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,40,39,1,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,41,Emotionele stress,836,225,56,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,42,41,4,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,43,29,4,1,0,45,0,0,192,0,-1--1--1,,1|(649,267)|
+///---\\\
+:L<%^E!@
+5:Objective task demand
+19:100,0
+24:0
+25:0
+26:0
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Arial|12||0-0-0|0-0-0|-1--1--1|0-166-214|192-192-192|-1--1--1

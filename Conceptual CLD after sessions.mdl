@@ -1,0 +1,1453 @@
+{UTF-8}
+Match between complexity of care and competency of team=A FUNCTION OF(Match between complexity of care and competency of team\
+		,Patient dependency,Skill mix and competency of nursing team) ~~|
+Match between complexity of care and competency of team=
+	~	
+	~	This variable displays the match between the complexity of care (following \
+		the average patient dependency) that patients need and the competency and \
+		skills nurses have. A good match will increase the likelihood of a good \
+		shift, but can decrease due to a lack of challenge or overwhelming amount \
+		of complexity
+	|
+
+Vacant shifts=A FUNCTION OF(Vacant shifts,Extra shifts completed,Long term absenteeism\
+		,Short term absenteeism) ~~|
+Vacant shifts=
+	~	
+	~	Shifts that become vacant due to nurses being long term absent or leaving \
+		the team. Basically, openings in the schedule that need to be filled up.
+	|
+
+Shift balance=A FUNCTION OF(Shift balance,Perceived negative shifts,Perceived positive shifts\
+		) ~~|
+Shift balance=
+	~	
+	~	The balance between positive and negative shifts, a form of mental \
+		accounting of shifts to display subjective workload
+	|
+
+Ability to destress=A FUNCTION OF(Ability to destress,Psychosomatic complaints,Short term absenteeism\
+		,"Work-life balance") ~~|
+Ability to destress=
+	~	
+	~	The nurses' ability to destress while being away from work
+	|
+
+Responsibility during shift=A FUNCTION OF(Responsibility during shift,Role of the nurse during shift\
+		,Skill mix and competency of nursing team) ~~|
+Responsibility during shift=
+	~	
+	~	The amount of responsibility nurses experience for workflow, patient \
+		outcomes and the decisions made by themselves and other colleagues
+	|
+
+Role of the nurse during shift=A FUNCTION OF(Role of the nurse during shift) ~~|
+Role of the nurse during shift=
+	~	
+	~	When nurses have the role of coordinator, they feel more responsibility \
+		for the workflow and outcomes of colleagues. Nurses can also be assigned a \
+		certain section, making tasks more clear and bounded, resulting in less \
+		feelings of responsibility
+	|
+
+Perceived negative shifts=A FUNCTION OF(Perceived negative shifts,Chance of perceived positive shifts\
+		,Shifts completed) ~~|
+Perceived negative shifts=
+	~	
+	~	All the shifts that are completed and perceived negative
+	|
+
+Agreed upon shift per nurse=A FUNCTION OF(Agreed upon shift per nurse) ~~|
+Agreed upon shift per nurse=
+	~	
+	~	The average number of shifts that a nurse works per week, based on \
+		contractual agreement
+	|
+
+Satisfaction with scheduling=A FUNCTION OF(Satisfaction with scheduling) ~~|
+Satisfaction with scheduling=
+	~	
+	~	How satisfied the nurses are with the schedule that they were given. This \
+		is an external variable in this system
+	|
+
+"Work-life balance"=A FUNCTION OF("Work-life balance",Emotional distress,Quality of private life\
+		) ~~|
+"Work-life balance"=
+	~	
+	~	The balance between work and the personal life of nurses
+	|
+
+Preparing equipment and managing medication=A FUNCTION OF(Preparing equipment and managing medication\
+		) ~~|
+Preparing equipment and managing medication=
+	~	
+	~	All the indirect care tasks involving medication and preparing equipment
+	|
+
+Chance of perceived positive shifts=A FUNCTION OF(Chance of perceived positive shifts\
+		,Emotional demand during shifts,Objective task demand per week,Satisfaction with extra shift\
+		,Satisfaction with scheduling,Vacant shifts) ~~|
+Chance of perceived positive shifts=
+	~	
+	~	The likelihood of a shift being experience as positive
+	|
+
+Perceived positive shifts=A FUNCTION OF(Perceived positive shifts,Chance of perceived positive shifts\
+		,Shifts completed) ~~|
+Perceived positive shifts=
+	~	
+	~	All the shifts that are completed and are perceived positive
+	|
+
+Long term absenteeism=A FUNCTION OF(Long term absenteeism,Psychosomatic complaints) ~~|
+Long term absenteeism=
+	~	
+	~	Long term absenteeism is the result of burnout, where nurses will report \
+		absent due to high levels of sustained distress that lead to psychosomatic \
+		complaints.
+	|
+
+Success of interventions=A FUNCTION OF(Success of interventions,Skill mix and competency of nursing team\
+		) ~~|
+Success of interventions=
+	~	
+	~	Shows the outcome of the care that nurses deliver, so the success of care \
+		interventions to improve patient well-being or even saving someone life.
+	|
+
+Short term absenteeism=A FUNCTION OF(Short term absenteeism) ~~|
+Short term absenteeism=
+	~	
+	~	External variable representing the temporary absence of nurses due to \
+		illness or other short-term factors, such as family issues
+	|
+
+Quality of private life=A FUNCTION OF(Quality of private life) ~~|
+Quality of private life=
+	~	
+	~	An external variable that lets nurses score their current private life as \
+		input to the model. It is the answer to the question: if you would score \
+		your private (or personal) life out of 100, what would you give it?
+	|
+
+Shifts completed=A FUNCTION OF(Shifts completed,Agreed upon shift per nurse,Extra shifts completed\
+		,Number of nurses available) ~~|
+Shifts completed=
+	~	
+	~	The total numbers of shifts completed by nurses
+	|
+
+Emotional demand during shifts=A FUNCTION OF(Emotional demand during shifts,Match between complexity of care and competency of team\
+		,Responsibility during shift,Total amount of distress) ~~|
+Emotional demand during shifts=
+	~	
+	~	How emotionally demanding the shifts themselves are
+	|
+
+Satisfaction with extra shift=A FUNCTION OF(Satisfaction with extra shift) ~~|
+Satisfaction with extra shift=
+	~	
+	~	The baseline satisfaction with having to work an extra shift. This is \
+		generally perceived more negative than shifts than fall within the regular \
+		schedule.
+	|
+
+Education level of nurses=A FUNCTION OF(Education level of nurses) ~~|
+Education level of nurses=
+	~	
+	~	How nurses perceive the education level of the team
+	|
+
+Nurses willingness to be flexible=A FUNCTION OF(Nurses willingness to be flexible,Team cohesion\
+		,"Work-life balance") ~~|
+Nurses willingness to be flexible=
+	~	
+	~	Nurses' willingness to be flexible encompasses the willingnes to fill in \
+		extra shifts that occur outside the normal scheduling.
+	|
+
+Extra shifts completed=A FUNCTION OF(Extra shifts completed,Number of nurses available\
+		,Nurses willingness to be flexible,Vacant shifts) ~~|
+Extra shifts completed=
+	~	
+	~	All the vacant shifts that are filled up by nurses.
+	|
+
+Task efficiency from team organisation  = A FUNCTION OF( Consultation opportunities with team\
+		,Skill mix and competency of nursing team) ~~|
+Task efficiency from team organisation=
+	~	
+	~	The efficiency (or time reduction) gained from effectively organising the \
+		team and increasing the teams competency
+	|
+
+Skill mix and competency of nursing team  = A FUNCTION OF( Education level of nurses,\
+		Intention to stay in the profession,Long term absenteeism,Professional development)\
+		 ~~|
+Skill mix and competency of nursing team=
+	~	
+	~	How competent the nursing team is
+	|
+
+Nurse resilience=A FUNCTION OF(Nurse resilience,Ability to destress,Skill mix and competency of nursing team\
+		) ~~|
+Nurse resilience=
+	~	
+	~	Resilience is a nurse’s adaptability, capacity, and ability to solve \
+		problems and seek solutions. (Yu et al., 2019), buffering Eustress
+	|
+
+Team cohesion  = A FUNCTION OF( Depersonalization,Intention to stay in the profession\
+		,Long term absenteeism,Supportive leadership style,Trust in other nursing colleagues\
+		) ~~|
+Team cohesion=
+	~	
+	~	The cohesion within the team on work methods, values and norms such as \
+		quality of care and communication, and the level of collegiality and \
+		connectedness
+	|
+
+Career expectations fulfillment=A FUNCTION OF(Career expectations fulfillment) ~~|
+Career expectations fulfillment=
+	~	
+	~	The main determant of intention to leave the profession, mainly focusing \
+		on the career ambitions of nurses and whether or not there is enough space \
+		for them to develop and their happiness with salary
+	|
+
+Job satisfaction  = A FUNCTION OF( Job control,Psychosomatic complaints,Ratio of direct and indirect care time\
+		,Workplace positivity) ~~|
+Job satisfaction=
+	~	
+	~	Job satisfaction is displaying how the nurses respond to how much they \
+		like their job, from ‘‘my job is the worst possible job’’ to \
+		‘‘my job is the best possible job’’ (De Veer, 2013)
+	|
+
+Depersonalization  = A FUNCTION OF( Emotional distress,Moral distress,Workplace positivity\
+		) ~~|
+Depersonalization=
+	~	
+	~	Related to the output side of burnout, representing a defensive coping \
+		mechanism to avoid emotional involvement, often described a feeling of \
+		being detached from one's body or mental processes, like an outside \
+		observer (Jourdain & Chênevert, 2010), more associated with relational \
+		stressors, such as conflicts with clients, colleagues, or the emotional \
+		toll of caregiving roles
+	|
+
+Number of nurses available  = A FUNCTION OF( Intention to stay in the profession,Long term absenteeism\
+		,Number of nurses scheduled per week,Short term absenteeism) ~~|
+Number of nurses available=
+	~	
+	~	The number of nurses that is present that week to work
+	|
+
+Emotional distress  = A FUNCTION OF( Depersonalization,Job control,Long term absenteeism\
+		,Psychosomatic complaints,Shift balance,Team cohesion) ~~|
+Emotional distress=
+	~	
+	~	Emotional distress is primarily related to overwork and the depletion of \
+		emotional resources, reflecting the input side of burnout, focusing on how \
+		external demand overwhelm internal reserves
+	|
+
+Moral distress  = A FUNCTION OF( Affirmation for decisions from team,Psychosomatic complaints\
+		,The ability to deliver safe care) ~~|
+Moral distress=
+	~	
+	~	Moral distress consists of negative stress symptoms that occur in \
+		situations that involve ethical dimensions and where the nurse feels (s)he \
+		is not able to preserve all interests and values at stake (Kälvemark et \
+		al., 2004 from De Veer et al., 2013). Time pressure, consultation \
+		opportunities with colleagues and leadership style are related to the \
+		amount of moral distress a situation triggers. EXAMPLE: A nurse may be \
+		emotionally distressed while restraining a patient, but is likely to \
+		become morally distressed only if the nurse believes that restraining the \
+		patient is morally wrong.
+	|
+
+Psychosomatic complaints=A FUNCTION OF(Psychosomatic complaints,Total amount of distress\
+		) ~~|
+Psychosomatic complaints=
+	~	
+	~	Psychosomatic pain is brought on by mental health problems or excessive \
+		stress. Anxiety, depression, or various forms of stress are examples of \
+		psychological problems that cause pain that first travels to your body's \
+		muscular and skeletal system.
+	|
+
+The ability to deliver safe care=A FUNCTION OF(The ability to deliver safe care,Job control\
+		,Match between complexity of care and competency of team,Objective task demand per week\
+		) ~~|
+The ability to deliver safe care=
+	~	
+	~	Enough time to give direct care and control over their job contribute to \
+		the nurses feeling of being able to deliver safe care, which somewhat \
+		includes patient safety as well as patient well being, important for moral \
+		stress
+	|
+
+Intention to stay in the profession  = A FUNCTION OF( Job satisfaction,Career expectations fulfillment\
+		,"Work-life balance") ~~|
+Intention to stay in the profession=
+	~	
+	~	The intention of the nurses to stay in nursing
+	|
+
+Workplace positivity=A FUNCTION OF(Workplace positivity,Positive interpersonal interactions\
+		,The ability to deliver safe care) ~~|
+Workplace positivity=
+	~	
+	~	The opposite of Wrokplace adversity. Adversity is the state of hardship or \
+		suffering associated with misfortune, trauma, distress, difﬁculty, or a \
+		tragic event (Rutter 1999, Luthar et al. 2000, Tugade & Fredrickson 2004). \
+		Workplace adversity can be viewed as any negative, stressful, traumatic, \
+		or difﬁcult situation or episode of hardship that is encountered in the \
+		occupational setting. (Jackson, 2007)
+	|
+
+Indirect care time per patient  = A FUNCTION OF( Administrative tasks,Communication and training tasks\
+		,Patient dependency,Patient transport,Preparing equipment and managing medication) ~~|
+Indirect care time per patient=
+	~	
+	~	All care activities that are not directly related to "making the patient \
+		better", such as restocking materials, preparing equpment, retrieving \
+		medication, communication, patient transport, patient administration, \
+		meetings, training students, etc. (Iordache et al., 2020, checklist)
+	|
+
+Total amount of distress  = A FUNCTION OF( Emotional distress,Eustress,Moral distress\
+		) ~~|
+Total amount of distress=
+	~	
+	~	Sum of the three sources of stress; emotional, physical, moral, buffered \
+		by eustress
+	|
+
+Direct care time per patient  = A FUNCTION OF( Patient dependency) ~~|
+Direct care time per patient=
+	~	
+	~	All the activities related to directly caring for the patient, such as \
+		wound care, medication, cathetering, checking bloodflow, plastering, \
+		temperature etc. (Iordache et al., 2020, checklist)
+	|
+
+Number of nurses scheduled per week  = A FUNCTION OF( ) ~~|
+Number of nurses scheduled per week=
+	~	
+	~	The number of nurses that is scheduled each week to work
+	|
+
+Objective task demand per week  = A FUNCTION OF( Direct care time per patient,Indirect care time per patient\
+		,Patients admitted per week,Task efficiency from team organisation,Task performance based on stress level\
+		) ~~|
+Objective task demand per week=
+	~	
+	~	The objective task demand per week (The hours of work caused by the \
+		patient flow and patient dependency (causing direct and indirect care \
+		time)) divided by the number of nurses present, their team organisation \
+		and their productivity
+	|
+
+Task performance based on stress level  = A FUNCTION OF( Total amount of distress) ~~|
+Task performance based on stress level=
+	~	
+	~	How many and how well nurses can perform tasks during there shift per hour \
+		of work, mainly viewed as an effect that less can be done when there is a \
+		high amount of stress
+	|
+
+Intentie om in het beroep te blijven  = A FUNCTION OF( Distantiëring,Onvervulde verwachtingen in carrière\
+		,Tevredenheid over het werk)
+	~	
+	~		|
+
+Team cohesie  = A FUNCTION OF( Distantiëring,Leiderschap met steun en vertrouwen,Vertouwen in andere betrokken zorgprofessionals\
+		,Vertrouwen in verpleegkundige collegas)
+	~	
+	~		|
+
+Vertouwen in andere betrokken zorgprofessionals  = A FUNCTION OF( )
+	~	
+	~		|
+
+Ziekteverzuim  = A FUNCTION OF( Fysieke uitputting,Professionele gedragsnormen binnen het team\
+		,Team cohesie)
+	~	
+	~		|
+
+Professionele gedragsnormen binnen het team  = A FUNCTION OF( )
+	~	
+	~		|
+
+Eustress  = A FUNCTION OF( Nurse resilience,Success of interventions,Team resilience)\
+		 ~~|
+Eustress=
+	~	
+	~	The positive side of stress; stress that is perceived in a positive way
+	|
+
+Consultation opportunities with team=A FUNCTION OF(Consultation opportunities with team\
+		,Meetings,Team psychological safety) ~~|
+Consultation opportunities with team=
+	~	
+	~	Moments that the team can be consulted about patient treatment, task \
+		distribution and other challenges, either meetings or spontaneous moments
+	|
+
+Patient dependency=A FUNCTION OF(Patient dependency) ~~|
+Patient dependency=
+	~	
+	~	The speciﬁc needs of each patient and how much nursing time they will \
+		require (O’Brien & Benger, 2007)
+	|
+
+Patients admitted per week=A FUNCTION OF(Patients admitted per week) ~~|
+Patients admitted per week=
+	~	
+	~	The number of patients that comes into the Emergency Department every week \
+		on average
+	|
+
+Administrative tasks=A FUNCTION OF(Administrative tasks,Communication and training tasks\
+		,Patient dependency,Patient transport) ~~|
+Administrative tasks=
+	~	
+	~	All tasks administrative, including patient administration, files \
+		management, shift reports, participating in research, drafting meeting \
+		notes etc.
+	|
+
+Affirmation for decisions from team=A FUNCTION OF(Affirmation for decisions from team\
+		,Consultation opportunities with team,Supportive leadership style) ~~|
+Affirmation for decisions from team=
+	~	
+	~	The shared responsibility, the feeling that it is okay a certain decision \
+		is made and that the idea is supported by several colleagues
+	|
+
+Average years of experience of nurses=A FUNCTION OF(Average years of experience of nurses\
+		) ~~|
+Average years of experience of nurses=
+	~	
+	~	The average years experience of nurses in the profession
+	|
+
+Job control=A FUNCTION OF(Job control,Consultation opportunities with team,Decision making autonomy\
+		,Skill mix and competency of nursing team) ~~|
+Job control=
+	~	
+	~	The amount of control nurses have over their own job, making their own \
+		decisions regarding patient care, time and effort distribution, choosing \
+		tasks based on preference
+	|
+
+Professional development=A FUNCTION OF(Professional development,Supportive leadership style\
+		) ~~|
+Professional development=
+	~	
+	~	Training, courses and learning opportunities during work
+	|
+
+Communication and training tasks=A FUNCTION OF(Communication and training tasks,Meetings\
+		,Professional development,Training students) ~~|
+Communication and training tasks=
+	~	
+	~	The number of tasks that come from meetings, communication and training \
+		nurses and students
+	|
+
+Decision making autonomy=A FUNCTION OF(Decision making autonomy,Average years of experience of nurses\
+		,Skill mix and competency of nursing team,Team psychological safety) ~~|
+Decision making autonomy=
+	~	
+	~	The amount freedom and trust the team gets for making their own decisions \
+		while doing their job
+	|
+
+Positive interpersonal interactions=A FUNCTION OF(Positive interpersonal interactions\
+		,Interactions with colleagues outside nursing team,Team cohesion,The ability to deliver safe care\
+		) ~~|
+Positive interpersonal interactions=
+	~	
+	~	All the interactions with other people on the work floor (patients, \
+		family, physicians, colleagues), when negative contribute to work adversity
+	|
+
+Interactions with colleagues outside nursing team=A FUNCTION OF(Interactions with colleagues outside nursing team\
+		) ~~|
+Interactions with colleagues outside nursing team=
+	~	
+	~	Interactions with colleagues outside nursing team, such as ambulance \
+		staff, transport staff, physicians and other departments
+	|
+
+Meetings=A FUNCTION OF(Meetings) ~~|
+Meetings=
+	~	
+	~	The number of scheduled meetings a nurse has during the week, either on \
+		patient communication, process communication or team communication
+	|
+
+Team resilience=A FUNCTION OF(Team resilience,Supportive leadership style,Team cohesion\
+		) ~~|
+Team resilience=
+	~	
+	~	The resilience (ability to deal with adversity, stress and tough decision \
+		making) caused by the team's cohesion and the supportiveness of leadership \
+		to increase the buffer of eustress on the total amount of stress
+	|
+
+Training students=A FUNCTION OF(Training students) ~~|
+Training students=
+	~	
+	~	The number of tasks that stem from training students, leading to more \
+		indirect care time per patient
+	|
+
+Ratio of direct and indirect care time=A FUNCTION OF(Ratio of direct and indirect care time\
+		,Direct care time per patient,Indirect care time per patient) ~~|
+Ratio of direct and indirect care time=
+	~	
+	~	The ratio of direct and indirect care time, displaying the meaning of work \
+		in some way and showing how much of the nurses' time is devoted to \
+		actually caring for patients
+	|
+
+Trust in other nursing colleagues=A FUNCTION OF(Trust in other nursing colleagues) ~~|
+Trust in other nursing colleagues=
+	~	
+	~	The level of trust nurses have in their colleagues
+	|
+
+Supportive leadership style=A FUNCTION OF(Supportive leadership style) ~~|
+Supportive leadership style=
+	~	
+	~	Supportive leadership (the manager is employee oriented and considerate of \
+		the needs of the team members, is friendly and approachable) and \
+		instrumental leadership (the actions are directed at clarifying \
+		expectations and goals and completing tasks)
+	|
+
+Patient transport=A FUNCTION OF(Patient transport) ~~|
+Patient transport=
+	~	
+	~	Patient transported to either another institution or within the hospital \
+		to a different ward
+	|
+
+Team psychological safety=A FUNCTION OF(Team psychological safety,Supportive leadership style\
+		,Team cohesion) ~~|
+Team psychological safety=
+	~	
+	~	Important ground for speaking-up behaviour; whether its safe enough to ask \
+		colleagues and supervisors for help, interrupt in processes or propose \
+		ideas
+	|
+
+Aantal aanwezige verpleegkundigen  = A FUNCTION OF( Ziekteverzuim,Aantal ingeplande verpleegkundigen per week\
+		)
+	~	
+	~		|
+
+Aantal ingeplande verpleegkundigen per week  = A FUNCTION OF( Objectieve taakoverbelasting\
+		)
+	~	
+	~		|
+
+Aantal patientbezoeken per week  = A FUNCTION OF( )
+	~	
+	~		|
+
+Administratieve taken  = A FUNCTION OF( Communicatie en training gerelateerde taken,Patientvervoer\
+		,Zorgafhankelijkheid)
+	~	
+	~		|
+
+Autonomie in besluitvorming  = A FUNCTION OF( Gemiddelde jaren aan ervaring van verpleegkundigen\
+		,Vaardigheden en competenties van het team,Psychologische veiligheid binnen het team\
+		)
+	~	
+	~		|
+
+Bevestiging van het team over interdisciplinaire communicatie  = A FUNCTION OF( Overlegmogelijkheden met het team\
+		,Leiderschap met steun en vertrouwen)
+	~	
+	~		|
+
+Communicatie en training gerelateerde taken  = A FUNCTION OF( Vergaderingen,Professionele ontwikkeling\
+		,Opleiden van studenten)
+	~	
+	~		|
+
+Professionele ontwikkeling  = A FUNCTION OF( Leiderschap met steun en vertrouwen)
+	~	
+	~		|
+
+Psychologische veiligheid binnen het team  = A FUNCTION OF( Leiderschap met steun en vertrouwen\
+		,Team cohesie)
+	~	
+	~		|
+
+Veerkracht van het team  = A FUNCTION OF( Leiderschap met steun en vertrouwen,Team cohesie\
+		)
+	~	
+	~		|
+
+Negatieve sociale interacties  = A FUNCTION OF( Interacties met collega's buiten verpleegkundig team\
+		,Team cohesie,Vermogen om goede kwaliteit zorg te leveren)
+	~	
+	~		|
+
+Directe zorgtijd per patient  = A FUNCTION OF( Zorgafhankelijkheid)
+	~	
+	~		|
+
+Distantiëring  = A FUNCTION OF( Emotionele uitputting,Morele stress,Werkgerelateerde lastige ervaringen\
+		)
+	~	
+	~		|
+
+Salaris en doorgroeimogelijkheden  = A FUNCTION OF( )
+	~	
+	~		|
+
+Emotionele uitputting  = A FUNCTION OF( Distantiëring,Invloed op het werk,Ervaren kwantitatieve overbelasting\
+		,Team cohesie)
+	~	
+	~		|
+
+Ervaren kwantitatieve overbelasting  = A FUNCTION OF( Verwachte werklast van verpleegkundigen\
+		,Ervaren werklast)
+	~	
+	~		|
+
+Ervaren werklast  = A FUNCTION OF( Objectieve aantal uit te voeren zorgtaken per verpleegkundige\
+		,Totale hoeveelheid stress,Onderbrekingen tijdens het werk)
+	~	
+	~		|
+
+Werkproductiviteit per uur  = A FUNCTION OF( Totale hoeveelheid stress,Onderbrekingen tijdens het werk\
+		)
+	~	
+	~		|
+
+Taakefficiëntie door teamorganisatie  = A FUNCTION OF( Overlegmogelijkheden met het team\
+		,Vaardigheden en competenties van het team,Team cohesie)
+	~	
+	~		|
+
+Fysieke uitputting van taken  = A FUNCTION OF( Directe zorgtijd per patient,Fysieke uitputting\
+		)
+	~	
+	~		|
+
+Fysieke uitputting  = A FUNCTION OF( Fysieke uitputting van taken,Fysieke klachten door stress\
+		)
+	~	
+	~		|
+
+Gemiddelde jaren aan ervaring van verpleegkundigen  = A FUNCTION OF( )
+	~	
+	~		|
+
+Overlegmogelijkheden met het team  = A FUNCTION OF( Vergaderingen,Psychologische veiligheid binnen het team\
+		)
+	~	
+	~		|
+
+Fysieke klachten door stress  = A FUNCTION OF( Emotionele uitputting,Morele stress)
+	~	
+	~		|
+
+Indirecte zorgtijd per patient  = A FUNCTION OF( Administratieve taken,Patientvervoer\
+		,Zorgafhankelijkheid)
+	~	
+	~		|
+
+Patientvervoer  = A FUNCTION OF( )
+	~	
+	~		|
+
+Totale hoeveelheid stress  = A FUNCTION OF( Emotionele uitputting,"Positieve stress (eustress)"\
+		,Morele stress,Fysieke uitputting)
+	~	
+	~		|
+
+Invloed op het werk  = A FUNCTION OF( Overlegmogelijkheden met het team,Autonomie in besluitvorming\
+		,Vaardigheden en competenties van het team)
+	~	
+	~		|
+
+Traumatische ervaringen met patienten  = A FUNCTION OF( )
+	~	
+	~		|
+
+"Positieve stress (eustress)"  = A FUNCTION OF( Veerkracht van verpleegkundigen,Veerkracht van het team\
+		)
+	~	
+	~		|
+
+Leiderschap met steun en vertrouwen  = A FUNCTION OF( )
+	~	
+	~		|
+
+Vaardigheden en competenties van het team  = A FUNCTION OF( Gemiddelde jaren aan ervaring van verpleegkundigen\
+		,Professionele ontwikkeling)
+	~	
+	~		|
+
+Onvervulde verwachtingen in carrière  = A FUNCTION OF( Ervaren kwantitatieve overbelasting\
+		,Professionele ontwikkeling,Salaris en doorgroeimogelijkheden)
+	~	
+	~		|
+
+Morele stress  = A FUNCTION OF( Bevestiging van het team over interdisciplinaire communicatie\
+		,Vermogen om goede kwaliteit zorg te leveren)
+	~	
+	~		|
+
+Verhouding zorgtijd  = A FUNCTION OF( Directe zorgtijd per patient,Indirecte zorgtijd per patient\
+		)
+	~	
+	~		|
+
+Vermogen om goede kwaliteit zorg te leveren  = A FUNCTION OF( Invloed op het werk,Objectieve taakoverbelasting\
+		,Ervaren kwantitatieve overbelasting,Verhouding zorgtijd)
+	~	
+	~		|
+
+Vertrouwen in verpleegkundige collegas  = A FUNCTION OF( )
+	~	
+	~		|
+
+Verwachte werklast van verpleegkundigen  = A FUNCTION OF( )
+	~	
+	~		|
+
+Objectieve aantal uit te voeren zorgtaken per verpleegkundige  = A FUNCTION OF( Directe zorgtijd per patient\
+		,Werkproductiviteit per uur,Indirecte zorgtijd per patient,Aantal aanwezige verpleegkundigen\
+		,Aantal patientbezoeken per week,Taakefficiëntie door teamorganisatie)
+	~	
+	~		|
+
+Objectieve taakoverbelasting  = A FUNCTION OF( Verwachte werklast van verpleegkundigen\
+		,Objectieve aantal uit te voeren zorgtaken per verpleegkundige)
+	~	
+	~		|
+
+Werkgerelateerde lastige ervaringen  = A FUNCTION OF( Traumatische ervaringen met patienten\
+		,Negatieve sociale interacties)
+	~	
+	~		|
+
+Vergaderingen  = A FUNCTION OF( )
+	~	
+	~		|
+
+Onderbrekingen tijdens het werk  = A FUNCTION OF( )
+	~	
+	~		|
+
+Veerkracht van verpleegkundigen  = A FUNCTION OF( Gemiddelde jaren aan ervaring van verpleegkundigen\
+		,Vaardigheden en competenties van het team)
+	~	
+	~		|
+
+Opleiden van studenten  = A FUNCTION OF( )
+	~	
+	~		|
+
+Zorgafhankelijkheid  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tevredenheid over het werk  = A FUNCTION OF( Invloed op het werk,Verhouding zorgtijd,\
+		Totale hoeveelheid stress,Werkgerelateerde lastige ervaringen)
+	~	
+	~		|
+
+Interacties met collega's buiten verpleegkundig team  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Complete model
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,63,2
+10,1,Task performance based on stress level,1401,520,79,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Objective task demand per week,872,421,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Direct care time per patient,777,251,74,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Indirect care time per patient,1099,250,82,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,Patients admitted per week,625,286,83,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,6,5,2,1,0,43,0,0,192,0,-1--1--1,,1|(690,365)|
+1,7,3,2,1,0,43,0,0,192,0,-1--1--1,,1|(843,330)|
+1,8,4,2,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,9,Patient dependency,843,76,58,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,10,Ratio of direct and indirect care time,916,175,58,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,11,3,10,1,0,43,0,0,192,0,-1--1--1,,1|(793,208)|
+1,12,4,10,1,0,45,0,0,192,0,-1--1--1,,1|(1023,175)|
+1,13,9,3,1,0,43,0,0,192,0,-1--1--1,,1|(768,149)|
+1,14,9,4,1,0,43,0,0,192,0,-1--1--1,,1|(1056,159)|
+10,15,Administrative tasks,1188,141,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,16,9,15,1,0,43,0,0,192,0,-1--1--1,,1|(1089,57)|
+1,17,15,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,18,Communication and training tasks,1386,140,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Training students,1398,45,42,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,20,Meetings,1337,235,43,22,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,21,18,15,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,22,19,18,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,20,18,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,24,Consultation opportunities with team,1531,236,85,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,25,20,24,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,26,Task efficiency from team organisation,1395,369,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,27,24,26,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,28,Job control,1562,43,50,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,29,Team psychological safety,1701,158,52,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,30,Team cohesion,1918,322,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,31,Trust in other nursing colleagues,1891,407,63,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,32,Supportive leadership style,1878,216,74,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,33,Professional development,1772,105,62,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,34,Decision making autonomy,1759,39,76,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,35,Depersonalization,1229,881,79,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,Depersonalization,2072,340,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,37,Skill mix and competency of nursing team,2233,232,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,38,Average years of experience of nurses,1964,48,52,38,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,39,36,30,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,40,31,30,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,41,29,24,1,0,43,0,0,192,0,-1--1--1,,1|(1616,166)|
+1,42,24,28,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,43,34,28,1,0,43,0,0,192,0,-1--1--1,,1|(1643,36)|
+1,44,33,18,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,45,32,33,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,46,32,29,1,0,43,0,0,192,0,-1--1--1,,1|(1768,169)|
+1,47,32,30,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,48,33,37,1,0,43,0,0,192,0,-1--1--1,,1|(1989,149)|
+1,49,37,28,1,0,43,0,0,192,0,-1--1--1,,1|(1939,-17)|
+1,50,37,34,1,0,43,0,0,192,0,-1--1--1,,1|(2016,111)|
+1,51,38,34,1,0,43,0,0,192,0,-1--1--1,,1|(1859,21)|
+1,52,29,34,1,0,43,0,0,192,0,-1--1--1,,1|(1696,86)|
+10,53,Team resilience,1746,318,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,54,Nurse resilience,2215,474,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,55,37,54,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,56,30,53,1,0,43,0,0,192,0,-1--1--1,,1|(1824,331)|
+1,57,32,53,1,0,43,0,0,192,0,-1--1--1,,1|(1799,229)|
+10,58,Eustress,1811,512,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,59,Number of nurses scheduled per week,443,640,84,43,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,60,Number of nurses available,445,508,70,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,61,59,60,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,62,Emotional distress,1229,743,48,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,63,Job control,1228,585,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,64,Team cohesion,1357,600,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,65,63,62,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,66,64,62,1,0,45,0,0,192,0,-1--1--1,,1|(1288,659)|
+1,67,62,35,1,0,43,0,0,192,0,-1--1--1,,1|(1204,812)|
+1,68,35,62,1,0,45,0,0,192,0,-1--1--1,,1|(1280,829)|
+10,69,Moral distress,1835,741,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,70,Total amount of distress,1613,622,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,71,Psychosomatic complaints,1524,741,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,72,69,70,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,73,58,70,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,74,53,58,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,75,54,58,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,76,Intention to stay in the profession,1560,968,87,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,77,Career expectations fulfillment,1561,878,65,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,78,77,76,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,79,Job satisfaction,1560,1082,53,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,80,The ability to deliver safe care,1826,959,76,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,81,Workplace positivity,1316,992,50,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,82,Positive interpersonal interactions,1112,985,63,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,83,Interactions with colleagues outside nursing team,949,1069,85,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,84,Team cohesion,959,980,48,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,85,The ability to deliver safe care,1206,1082,81,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,86,85,82,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,87,84,82,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,88,83,82,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,89,82,81,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,90,81,79,1,0,43,0,0,192,0,-1--1--1,,1|(1432,1079)|
+1,91,79,76,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,92,80,69,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,93,Job control,1691,1007,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,94,Ratio of direct and indirect care time,1723,1114,50,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,95,93,79,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,96,94,79,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,97,93,80,1,0,43,0,0,192,0,-1--1--1,,1|(1728,974)|
+10,98,Affirmation for decisions from team,1833,633,68,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,99,Supportive leadership style,1986,712,79,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,100,Consultation opportunities with team,1953,560,85,43,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,101,100,98,1,0,43,0,0,192,0,-1--1--1,,1|(1911,608)|
+1,102,99,98,1,0,43,0,0,192,0,-1--1--1,,1|(1933,654)|
+1,103,98,69,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,104,70,1,1,0,45,0,0,192,0,-1--1--1,,1|(1511,556)|
+1,105,62,70,1,0,43,0,0,192,0,-1--1--1,,1|(1318,679)|
+1,106,30,29,1,0,43,0,0,192,0,-1--1--1,,1|(1806,256)|
+1,107,69,35,1,0,43,0,0,192,0,-1--1--1,,1|(1472,857)|
+1,108,81,35,1,0,45,0,0,192,0,-1--1--1,,1|(1251,952)|
+10,109,Patient transport,1039,76,42,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,110,109,4,1,0,43,0,0,192,0,-1--1--1,,1|(1103,182)|
+1,111,109,15,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,112,18,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,113,Success of interventions,2085,415,55,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,114,113,58,1,0,43,0,0,192,0,-1--1--1,,1|(1957,451)|
+1,115,37,113,1,0,43,0,0,192,0,-1--1--1,,1|(2135,375)|
+10,116,Shifts completed,794,543,47,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,117,60,116,1,0,45,0,0,192,0,-1--1--1,,1|(630,597)|
+10,118,Perceived positive shifts,800,643,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,119,Perceived negative shifts,981,553,63,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,120,Shift balance,984,659,57,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,121,116,118,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,122,116,119,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,123,118,120,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,124,119,120,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,125,120,62,1,0,45,0,0,192,0,-1--1--1,,1|(1072,702)|
+10,126,Emotional demand during shifts,863,787,65,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,127,Chance of perceived positive shifts,687,786,60,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,128,126,127,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,129,127,118,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,130,127,119,1,0,45,0,0,192,0,-1--1--1,,1|(840,681)|
+10,131,Short term absenteeism,241,418,57,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,132,Long term absenteeism,240,495,57,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,133,Extra shifts completed,441,357,49,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,134,131,60,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,135,132,60,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,136,133,116,1,0,43,0,0,192,0,-1--1--1,,1|(577,454)|
+10,137,Long term absenteeism,1100,593,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,138,137,62,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,139,Ability to destress,2130,745,49,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,140,"Work-life balance",2095,877,42,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,141,140,139,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,142,Short term absenteeism,2272,747,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,143,142,139,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,144,Quality of private life,2226,826,48,25,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,145,144,140,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,146,140,76,1,0,43,0,0,192,0,-1--1--1,,1|(1855,901)|
+10,147,Emotional distress,2221,907,50,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,148,147,140,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,149,Responsibility during shift,2388,334,61,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,150,Role of the nurse during shift,2374,444,75,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,151,150,149,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,152,Responsibility during shift,961,703,67,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,153,152,126,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,154,Match between complexity of care and competency of team,1671,-94,97,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,155,9,154,1,0,45,0,0,192,0,-1--1--1,,1|(997,-8)|
+1,156,37,154,1,0,43,0,0,192,0,-1--1--1,,1|(2038,-27)|
+10,157,Match between complexity of care and competency of team,898,893,97,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,158,157,126,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,159,Match between complexity of care and competency of team,2050,993,97,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,160,159,80,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,161,Psychosomatic complaints,83,495,72,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,162,161,132,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,163,85,81,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,164,26,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,165,1,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,166,Total amount of distress,1049,786,73,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,167,166,126,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,168,Nurses willingness to be flexible,441,238,72,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,169,168,133,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,170,Team cohesion,348,122,46,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,171,"Work-life balance",534,124,46,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,172,170,168,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,173,171,168,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,174,Agreed upon shift per nurse,585,516,62,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,175,174,116,1,0,43,0,0,192,0,-1--1--1,,1|(688,550)|
+10,176,Satisfaction with scheduling,530,747,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,177,Objective task demand per week,586,875,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,178,176,127,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,179,177,127,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,180,139,54,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,181,37,149,1,0,45,0,0,192,0,-1--1--1,,1|(2320,248)|
+10,182,Education level of nurses,2326,143,66,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,183,182,37,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,184,Preparing equipment and managing medication,1262,302,90,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,185,184,4,1,0,43,0,0,192,0,-1--1--1,,1|(1150,299)|
+10,186,Objective task demand per week,1830,1065,67,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,187,186,80,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,188,Satisfaction with extra shift,708,874,65,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,189,188,127,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,190,Vacant shifts,498,799,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,191,190,127,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+1,192,60,133,0,0,45,0,0,64,0,-1--1--1,,1|(0,0)|
+10,193,Vacant shifts,300,357,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,194,193,133,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+1,195,70,71,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,196,71,62,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,197,71,69,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,198,71,139,1,0,0,0,0,64,0,-1--1--1,,1|(1835,827)|
+1,199,71,79,1,0,0,0,0,64,0,-1--1--1,,1|(1405,913)|
+10,200,Intention to stay in the profession,239,598,74,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,201,200,60,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,202,Long term absenteeism,2069,276,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,203,Intention to stay in the profession,2033,225,74,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,204,203,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,205,202,30,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+10,206,Skill mix and competency of nursing team,1539,443,65,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,207,206,26,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,208,203,37,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,209,202,37,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Objective task demand subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,90,2
+10,1,Task performance based on stress level,812,525,79,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Objective task demand per week,588,456,87,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Direct care time per patient,493,286,74,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Indirect care time per patient,815,285,82,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,Patients admitted per week,341,321,83,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,6,5,2,1,0,43,0,0,192,0,-1--1--1,,1|(406,400)|
+1,7,3,2,1,0,43,0,0,192,0,-1--1--1,,1|(559,365)|
+1,8,4,2,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,9,Patient dependency,559,111,58,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,10,Ratio of direct and indirect care time,632,210,58,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,11,3,10,1,0,43,0,0,192,0,-1--1--1,,1|(509,243)|
+1,12,4,10,1,0,45,0,0,192,0,-1--1--1,,1|(739,210)|
+1,13,9,3,1,0,43,0,0,192,0,-1--1--1,,1|(484,184)|
+1,14,9,4,1,0,43,0,0,192,0,-1--1--1,,1|(772,194)|
+10,15,Administrative tasks,904,176,68,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,16,9,15,1,0,43,0,0,192,0,-1--1--1,,1|(805,92)|
+1,17,15,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,18,Communication and training tasks,1102,175,83,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Training students,1102,84,42,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,20,Meetings,1053,270,43,22,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,21,18,15,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,22,19,18,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,20,18,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,24,Task efficiency from team organisation,830,423,67,43,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,25,Patient transport,755,111,42,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,26,25,4,1,0,43,0,0,192,0,-1--1--1,,1|(819,217)|
+1,27,25,15,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,28,18,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,29,24,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,30,1,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,31,Preparing equipment and managing medication,1017,324,90,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,32,31,4,1,0,43,0,0,192,0,-1--1--1,,1|(899,305)|
+10,33,Total amount of distress,991,555,61,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,34,33,1,0,0,45,0,0,64,0,-1--1--1,,1|(0,0)|
+10,35,Professional development,1161,275,52,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,36,35,18,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+10,37,Consultation opportunities with team,996,480,64,27,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,38,37,24,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+10,39,Skill mix and competency of nursing team,991,402,54,27,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,40,39,24,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Team subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,Consultation opportunities with team,256,273,75,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Job control,268,144,50,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Team psychological safety,407,259,52,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Team cohesion,624,423,42,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,Trust in other nursing colleagues,597,508,63,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,6,Supportive leadership style,602,299,68,17,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,7,Professional development,475,200,59,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Decision making autonomy,459,132,70,21,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Depersonalization,778,441,72,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,Skill mix and competency of nursing team,929,325,58,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,11,Average years of experience of nurses,672,142,52,38,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,12,9,4,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,13,5,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,14,3,1,1,0,43,0,0,192,0,-1--1--1,,1|(340,246)|
+1,15,1,2,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,16,8,2,1,0,43,0,0,192,0,-1--1--1,,1|(348,136)|
+1,17,6,7,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,18,6,3,1,0,43,0,0,192,0,-1--1--1,,1|(477,267)|
+1,19,6,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,20,7,10,1,0,43,0,0,192,0,-1--1--1,,1|(692,243)|
+1,21,10,2,1,0,43,0,0,192,0,-1--1--1,,1|(641,81)|
+1,22,10,8,1,0,43,0,0,192,0,-1--1--1,,1|(711,197)|
+1,23,11,8,1,0,43,0,0,192,0,-1--1--1,,1|(561,113)|
+1,24,3,8,1,0,43,0,0,192,0,-1--1--1,,1|(400,187)|
+10,25,Team resilience,510,371,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,26,Nurse resilience,945,466,45,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,27,10,26,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,28,4,25,1,0,43,0,0,192,0,-1--1--1,,1|(556,400)|
+1,29,6,25,1,0,43,0,0,192,0,-1--1--1,,1|(552,309)|
+1,30,4,3,1,0,43,0,0,192,0,-1--1--1,,1|(459,404)|
+10,31,Success of interventions,791,516,55,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,32,10,31,1,0,43,0,0,192,0,-1--1--1,,1|(841,475)|
+10,33,Responsibility during shift,1053,429,61,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,34,Role of the nurse during shift,1063,550,75,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,35,34,33,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,36,Match between complexity of care and competency of team,950,166,86,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,37,10,36,1,0,43,0,0,192,0,-1--1--1,,1|(970,256)|
+1,38,10,33,1,0,45,0,0,192,0,-1--1--1,,1|(1002,343)|
+10,39,Education level of nurses,1084,297,66,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,40,39,10,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,41,Long term absenteeism,775,377,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,42,Intention to stay in the profession,739,326,74,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,43,42,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,44,41,4,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,45,42,10,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,46,41,10,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,47,Meetings,291,350,43,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,48,47,1,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+10,49,Ability to destress,898,545,37,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,50,49,26,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,51,Patient dependency,773,82,50,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,52,51,36,1,0,45,0,0,64,0,-1--1--1,,1|(846,102)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Stress subsystem
+$-1--1--1,0,Arial|12||0-0-0|-1--1--1|0-166-214|-1--1--1|-1--1--1|96,96,82,2
+10,1,Depersonalization,501,435,59,15,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Eustress,885,112,33,10,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Emotional distress,501,301,37,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Job control,500,143,49,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Team cohesion,629,158,39,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,6,4,3,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,7,5,3,1,0,45,0,0,192,0,-1--1--1,,1|(565,223)|
+1,8,3,1,1,0,43,0,0,192,0,-1--1--1,,1|(479,367)|
+1,9,1,3,1,0,45,0,0,192,0,-1--1--1,,1|(550,383)|
+10,10,Moral distress,1098,299,51,10,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,11,Total amount of distress,885,180,56,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,12,Psychosomatic complaints,796,299,56,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,13,10,11,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,14,2,11,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,15,Intention to stay in the profession,793,530,74,19,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,16,Career expectations fulfillment,794,440,47,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,17,16,15,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,18,Job satisfaction,793,644,57,10,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,The ability to deliver safe care,1098,517,61,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Workplace positivity,588,550,40,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Positive interpersonal interactions,384,543,48,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,Interactions with colleagues outside nursing team,305,630,71,28,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,23,Team cohesion,378,472,39,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,24,The ability to deliver safe care,478,640,66,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,25,24,21,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,26,23,21,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,27,22,21,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,28,21,20,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,29,20,18,1,0,43,0,0,192,0,-1--1--1,,1|(679,636)|
+1,30,18,15,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,31,19,10,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,32,Job control,963,565,49,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,33,Ratio of direct and indirect care time,995,644,72,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,34,32,18,1,0,43,0,0,192,0,-1--1--1,,1|(882,595)|
+1,35,33,18,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,36,32,19,1,0,43,0,0,192,0,-1--1--1,,1|(1000,532)|
+10,37,Affirmation for decisions from team,1105,191,74,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,38,Supportive leadership style,1193,252,62,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,39,Consultation opportunities with team,1159,112,64,27,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,40,39,37,1,0,43,0,0,192,0,-1--1--1,,1|(1145,155)|
+1,41,38,37,1,0,43,0,0,192,0,-1--1--1,,1|(1160,211)|
+1,42,37,10,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,43,3,11,1,0,43,0,0,192,0,-1--1--1,,1|(590,237)|
+1,44,10,1,1,0,43,0,0,192,0,-1--1--1,,1|(742,413)|
+1,45,20,1,1,0,45,0,0,192,0,-1--1--1,,1|(530,506)|
+10,46,Long term absenteeism,372,151,53,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,47,46,3,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,48,Ability to destress,1313,328,32,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,49,"Work-life balance",1312,438,33,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,50,49,48,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,51,Short term absenteeism,1313,240,53,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,52,51,48,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,53,Quality of private life,1424,400,40,11,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,54,53,49,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,55,49,15,1,0,43,0,0,192,0,-1--1--1,,1|(1076,462)|
+10,56,Emotional distress,1422,476,42,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,57,56,49,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,58,Match between complexity of care and competency of team,1322,551,82,27,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,59,58,19,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,60,24,20,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,61,Objective task demand per week,1096,592,71,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,62,61,19,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,63,11,12,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,64,12,3,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,65,12,10,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,66,12,48,1,0,0,0,0,64,0,-1--1--1,,1|(1050,393)|
+1,67,12,18,1,0,45,0,0,64,0,-1--1--1,,1|(663,458)|
+10,68,Nurse resilience,884,52,41,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,69,68,2,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,70,Success of interventions,1009,74,51,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,71,70,2,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,72,Team resilience,767,77,41,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,73,72,2,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,74,Shift balance,358,297,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,75,74,3,0,0,0,0,0,64,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Shift subsystem
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,81,2
+10,1,Number of nurses scheduled per week,610,438,84,43,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,2,Number of nurses available,612,306,70,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,1,2,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,4,Shifts completed,961,271,47,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,2,4,1,0,45,0,0,192,0,-1--1--1,,1|(795,307)|
+10,6,Perceived positive shifts,967,371,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Perceived negative shifts,1148,281,63,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Shift balance,1151,372,57,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,9,4,6,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,10,4,7,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,11,6,8,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,12,7,8,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,13,Emotional demand during shifts,1110,515,65,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,14,Chance of perceived positive shifts,934,514,60,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,13,14,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,16,14,6,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,17,14,7,1,0,45,0,0,192,0,-1--1--1,,1|(1028,393)|
+10,18,Short term absenteeism,408,216,57,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Long term absenteeism,407,293,57,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Extra shifts completed,608,155,49,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,21,18,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,22,19,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,23,20,4,1,0,43,0,0,192,0,-1--1--1,,1|(783,184)|
+10,24,Responsibility during shift,1128,431,67,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,25,24,13,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,26,Match between complexity of care and competency of team,1145,621,97,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,27,26,13,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,28,Psychosomatic complaints,250,293,72,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,29,28,19,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,30,Total amount of distress,1296,514,73,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,31,30,13,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,32,Nurses willingness to be flexible,608,59,72,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,33,32,20,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,34,Team cohesion,425,54,46,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,35,"Work-life balance",778,58,46,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,36,34,32,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,37,35,32,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,38,Agreed upon shift per nurse,809,267,62,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,39,38,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,40,Satisfaction with scheduling,777,475,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,41,Objective task demand per week,833,603,62,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,42,40,14,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,43,41,14,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,44,Satisfaction with extra shift,955,602,65,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,45,44,14,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+10,46,Vacant shifts,745,527,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,47,46,14,0,0,45,0,0,64,0,-1--1--1,,1|(0,0)|
+1,48,2,20,0,0,45,0,0,64,0,-1--1--1,,1|(0,0)|
+10,49,Vacant shifts,467,155,56,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,50,49,20,0,0,43,0,0,64,0,-1--1--1,,1|(0,0)|
+10,51,Intention to stay in the profession,406,396,74,35,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,52,51,2,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Nederlands model (niet up to date na sessies)
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,68,2
+10,1,Onderbrekingen tijdens het werk,929,757,70,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,2,Werkproductiviteit per uur,861,679,73,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Ervaren werklast,759,798,42,33,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Objectieve aantal uit te voeren zorgtaken per verpleegkundige,675,631,97,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,5,1,2,1,0,45,0,0,192,0,-1--1--1,,1|(899,695)|
+1,6,2,4,1,0,45,0,0,192,0,-1--1--1,,1|(787,642)|
+1,7,1,3,1,0,43,0,0,192,0,-1--1--1,,1|(843,768)|
+1,8,4,3,1,0,43,0,0,192,0,-1--1--1,,1|(694,711)|
+10,9,Directe zorgtijd per patient,580,461,66,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,10,Indirecte zorgtijd per patient,902,460,72,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,11,Aantal patientbezoeken per week,426,523,75,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,12,11,4,1,0,43,0,0,192,0,-1--1--1,,1|(496,595)|
+1,13,9,4,1,0,43,0,0,192,0,-1--1--1,,1|(646,540)|
+1,14,10,4,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,15,Zorgafhankelijkheid,581,268,76,23,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,16,Verhouding zorgtijd,682,393,51,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,17,9,16,1,0,43,0,0,192,0,-1--1--1,,1|(590,426)|
+1,18,10,16,1,0,45,0,0,192,0,-1--1--1,,1|(805,407)|
+1,19,15,9,1,0,43,0,0,192,0,-1--1--1,,1|(531,367)|
+1,20,15,10,1,0,43,0,0,192,0,-1--1--1,,1|(834,355)|
+10,21,Administratieve taken,991,351,67,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,22,15,21,1,0,43,0,0,192,0,-1--1--1,,1|(897,190)|
+1,23,21,10,1,0,43,0,0,192,0,-1--1--1,,1|(977,406)|
+10,24,Communicatie en training gerelateerde taken,1189,350,81,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,25,Opleiden van studenten,1201,255,61,25,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,26,Vergaderingen,1140,445,61,25,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,27,24,21,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,28,25,24,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,29,26,24,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,30,Overlegmogelijkheden met het team,1346,442,83,31,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,31,26,30,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,32,Taakefficiëntie door teamorganisatie,1264,572,77,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,33,30,32,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,34,32,4,1,0,45,0,0,192,0,-1--1--1,,1|(863,583)|
+10,35,Invloed op het werk,1365,253,62,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,Psychologische veiligheid binnen het team,1520,393,79,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,37,Team cohesie,1651,525,44,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,38,Vertrouwen in verpleegkundige collegas,1495,466,75,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,39,Leiderschap met steun en vertrouwen,1727,438,73,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,40,Professionele ontwikkeling,1575,315,61,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,41,Autonomie in besluitvorming,1530,205,63,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,42,Distantiëring,1029,1085,82,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,43,Distantiëring,1394,521,65,17,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,44,Vaardigheden en competenties van het team,1916,456,82,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,45,Gemiddelde jaren aan ervaring van verpleegkundigen,2102,383,81,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,46,37,32,1,0,43,0,0,192,0,-1--1--1,,1|(1479,560)|
+1,47,43,37,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,48,38,37,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,49,36,30,1,0,43,0,0,192,0,-1--1--1,,1|(1416,398)|
+1,50,30,35,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,51,41,35,1,0,43,0,0,192,0,-1--1--1,,1|(1413,213)|
+1,52,40,24,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,53,39,40,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,54,39,36,1,0,43,0,0,192,0,-1--1--1,,1|(1600,400)|
+1,55,39,37,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,56,40,44,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,57,44,35,1,0,43,0,0,192,0,-1--1--1,,1|(1663,302)|
+1,58,44,41,1,0,43,0,0,192,0,-1--1--1,,1|(1777,276)|
+1,59,45,44,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,60,45,41,1,0,43,0,0,192,0,-1--1--1,,1|(1835,226)|
+1,61,44,32,1,0,43,0,0,192,0,-1--1--1,,1|(1637,594)|
+1,62,36,41,1,0,43,0,0,192,0,-1--1--1,,1|(1484,293)|
+10,63,Veerkracht van het team,1745,617,56,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,64,Veerkracht van verpleegkundigen,1871,616,72,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,65,44,64,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,66,45,64,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,67,37,63,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,68,39,63,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,69,"Positieve stress (eustress)",1642,722,70,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,70,Objectieve taakoverbelasting,545,793,70,35,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,71,Aantal ingeplande verpleegkundigen per week,339,836,94,31,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,72,Ziekteverzuim,269,628,61,22,8,3,0,0,-1,1,0,0,0,0,0,0,0,0
+10,73,Aantal aanwezige verpleegkundigen,327,718,77,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,74,70,71,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,75,71,73,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,76,72,73,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,77,73,4,1,0,45,0,0,192,0,-1--1--1,,1|(482,693)|
+10,78,Verwachte werklast van verpleegkundigen,655,895,88,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,79,4,70,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,80,78,70,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,81,Ervaren kwantitatieve overbelasting,858,929,59,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,82,3,81,1,0,43,0,0,192,0,-1--1--1,,1|(788,865)|
+1,83,78,81,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,84,Emotionele uitputting,1032,953,50,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,85,Invloed op het werk,934,843,59,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,86,Team cohesie,1082,857,49,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,87,81,84,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,88,85,84,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,89,86,84,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,90,84,42,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,91,42,84,1,0,45,0,0,192,0,-1--1--1,,1|(1079,1035)|
+10,92,Fysieke uitputting,1396,941,42,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,93,Morele stress,1553,967,60,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,94,Totale hoeveelheid stress,1431,838,71,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,95,94,3,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+10,96,Fysieke klachten door stress,1274,1070,72,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,97,84,96,1,0,43,0,0,192,0,-1--1--1,,1|(1158,1001)|
+1,98,93,96,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,99,96,92,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,100,92,94,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,101,93,94,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,102,69,94,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,103,63,69,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,104,64,69,1,0,43,0,0,192,0,-1--1--1,,1|(1756,707)|
+10,105,Intentie om in het beroep te blijven,1363,1178,74,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+1,106,42,105,1,0,45,0,0,192,0,-1--1--1,,1|(1165,1160)|
+10,107,Onvervulde verwachtingen in carrière,1080,1225,72,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,108,107,105,1,0,45,0,0,192,0,-1--1--1,,1|(1188,1231)|
+10,109,Tevredenheid over het werk,1363,1292,61,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,110,Vermogen om goede kwaliteit zorg te leveren,1629,1184,71,33,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,111,Werkgerelateerde lastige ervaringen,775,1295,73,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,112,Traumatische ervaringen met patienten,572,1267,69,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,113,Negatieve sociale interacties,578,1086,52,33,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,114,Interacties met collega's buiten verpleegkundig team,351,1138,94,37,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,115,Team cohesie,342,1033,49,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,116,Vermogen om goede kwaliteit zorg te leveren,519,983,87,29,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,117,116,113,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,118,115,113,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,119,114,113,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,120,112,111,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,121,113,111,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,122,111,109,1,0,45,0,0,192,0,-1--1--1,,1|(1086,1379)|
+1,123,109,105,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,124,110,93,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,125,Professionele ontwikkeling,896,1131,62,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,126,Salaris en doorgroeimogelijkheden,873,1202,98,29,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,127,Ervaren kwantitatieve overbelasting,963,1304,60,27,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,128,127,107,1,0,43,0,0,192,0,-1--1--1,,1|(1053,1298)|
+1,129,126,107,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,130,125,107,1,0,45,0,0,192,0,-1--1--1,,1|(1032,1159)|
+10,131,Invloed op het werk,1494,1223,59,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,132,Totale hoeveelheid stress,1409,1385,61,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,133,Verhouding zorgtijd,1562,1296,52,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,134,131,109,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,135,132,109,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,136,133,109,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,137,133,110,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,138,131,110,1,0,43,0,0,192,0,-1--1--1,,1|(1520,1187)|
+10,139,Bevestiging van het team over interdisciplinaire communicatie,1636,843,84,46,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,140,Leiderschap met steun en vertrouwen,1770,973,72,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,141,Overlegmogelijkheden met het team,1861,762,94,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,142,141,139,1,0,43,0,0,192,0,-1--1--1,,1|(1778,831)|
+1,143,140,139,1,0,43,0,0,192,0,-1--1--1,,1|(1721,912)|
+1,144,139,93,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,145,Fysieke uitputting,247,537,45,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,146,145,72,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,147,70,110,0,1,0,0,0,64,0,-1--1--1,,1|(0,0)|
+10,148,Ervaren kwantitatieve overbelasting,1794,1069,73,22,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,149,148,110,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,150,94,2,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,151,84,94,1,0,43,0,0,192,0,-1--1--1,,1|(1205,884)|
+1,152,37,36,1,0,43,0,0,192,0,-1--1--1,,1|(1608,464)|
+1,153,93,42,1,0,43,0,0,192,0,-1--1--1,,1|(1270,1107)|
+1,154,111,42,1,0,43,0,0,192,0,-1--1--1,,1|(823,1126)|
+10,155,Patientvervoer,793,229,60,24,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,156,155,10,1,0,43,0,0,192,0,-1--1--1,,1|(901,328)|
+1,157,155,21,1,0,43,0,0,192,0,-1--1--1,,1|(901,270)|
+10,158,Fysieke uitputting van taken,1252,984,57,35,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,159,Directe zorgtijd per patient,1216,930,71,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,160,159,158,1,0,43,0,0,192,0,-1--1--1,,1|(1190,984)|
+1,161,158,92,0,0,43,0,0,192,0,-1--1--1,,1|(0,0)|
+1,162,92,158,1,0,43,0,0,192,0,-1--1--1,,1|(1327,939)|
+10,163,Professionele gedragsnormen binnen het team,89,595,69,35,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+10,164,Team cohesie,141,705,41,24,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,165,163,72,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+1,166,164,72,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+10,167,Vertouwen in andere betrokken zorgprofessionals,1488,648,78,35,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||I|0-0-0,0,0,0,0,0,0
+1,168,167,37,0,0,45,0,0,192,0,-1--1--1,,1|(0,0)|
+///---\\\
+:L<%^E!@
+5:Number of nurses available
+19:90,1
+24:0
+25:0
+26:0
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Arial|12||0-0-0|0-0-0|-1--1--1|0-166-214|192-192-192|-1--1--1
